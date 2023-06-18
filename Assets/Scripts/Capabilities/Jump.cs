@@ -36,7 +36,7 @@ public class Jump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        animator.ResetTrigger("jump");
+        animator.ResetTrigger("Jump");
         
         onGround = ground.GetOnGround();
         velocity = body.velocity;
@@ -49,7 +49,6 @@ public class Jump : MonoBehaviour
         if (desiredJump)
         {
             desiredJump = false;
-            animator.SetTrigger("jump");
             JumpAction();
         }
 
@@ -74,15 +73,17 @@ public class Jump : MonoBehaviour
 
         animator.SetFloat("xVelocity", body.velocity.x);
         animator.SetFloat("yVelocity", body.velocity.y);
-
-        animator.SetBool("grounded", onGround);
     }
 
     private void JumpAction()
     {
+        if (animator.GetFloat("Attacking") != 0f)
+            return;
+
         if(onGround || jumpPhase < maxAirJumps)
         {
             jumpPhase += 1;
+            animator.SetTrigger("Jump");
             float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
 
             if(velocity.y > 0f)

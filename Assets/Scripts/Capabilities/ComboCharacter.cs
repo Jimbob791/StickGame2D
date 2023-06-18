@@ -8,18 +8,28 @@ public class ComboCharacter : MonoBehaviour
     private StateMachine meleeStateMachine;
 
     [SerializeField] public Collider2D hitbox;
-    [SerializeField] public GameObject hitEffect;
+    [SerializeField] public GameObject Hiteffect;
 
+    // Start is called before the first frame update
     void Start()
     {
         meleeStateMachine = GetComponent<StateMachine>();
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && meleeStateMachine.currentState.GetType() == typeof(IdleCombatState))
+        if (Input.GetMouseButton(0) && meleeStateMachine.CurrentState.GetType() == typeof(IdleCombatState))
         {
-            meleeStateMachine.SetNextState(new GroundEntryState());
+            if (transform.parent.GetComponent<Ground>().GetOnGround() == true)
+            {
+                if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+                    meleeStateMachine.SetNextState(new GroundEntryState());
+            }
+            else
+            {
+                meleeStateMachine.SetNextStateToMain();
+            }
         }
     }
 }

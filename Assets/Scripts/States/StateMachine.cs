@@ -6,9 +6,10 @@ public class StateMachine : MonoBehaviour
 
     private State mainStateType;
 
-    public State currentState { get; private set; }
+    public State CurrentState { get; private set; }
     private State nextState;
 
+    // Update is called once per frame
     void Update()
     {
         if (nextState != null)
@@ -16,19 +17,19 @@ public class StateMachine : MonoBehaviour
             SetState(nextState);
         }
 
-        if (currentState != null)
-            currentState.OnUpdate();
+        if (CurrentState != null)
+            CurrentState.OnUpdate();
     }
 
     private void SetState(State _newState)
     {
         nextState = null;
-        if (currentState != null)
+        if (CurrentState != null)
         {
-            currentState.OnExit();
+            CurrentState.OnExit();
         }
-        currentState = _newState;
-        currentState.OnEnter(this);
+        CurrentState = _newState;
+        CurrentState.OnEnter(this);
     }
 
     public void SetNextState(State _newState)
@@ -41,14 +42,14 @@ public class StateMachine : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (currentState != null)
-            currentState.OnLateUpdate();
+        if (CurrentState != null)
+            CurrentState.OnLateUpdate();
     }
 
     private void FixedUpdate()
     {
-        if (currentState != null)
-            currentState.OnFixedUpdate();
+        if (CurrentState != null)
+            CurrentState.OnFixedUpdate();
     }
 
     public void SetNextStateToMain()
@@ -59,6 +60,7 @@ public class StateMachine : MonoBehaviour
     private void Awake()
     {
         SetNextStateToMain();
+
     }
 
 

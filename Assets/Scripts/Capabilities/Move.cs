@@ -30,7 +30,18 @@ public class Move : MonoBehaviour
 
     void Update()
     {
-        direction.x = input.RetrieveMoveInput();
+        onGround = ground.GetOnGround();
+        animator.SetBool("Grounded", onGround);
+
+        if (animator.GetFloat("Attacking") == 0f)
+        {
+            direction.x = input.RetrieveMoveInput();
+        }
+        else
+        {
+            direction.x = 0f;
+        }
+
         desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeed - ground.GetFriction(), 0f);
 
         if (direction.x != 0)
@@ -40,17 +51,16 @@ public class Move : MonoBehaviour
 
         if (direction.x > 0 || direction.x < 0)
         {
-            animator.SetBool("running", true);
+            animator.SetBool("Running", true);
         }
         else
         {
-            animator.SetBool("running", false);
+            animator.SetBool("Running", false);
         }
     }
 
     private void FixedUpdate()
     {
-        onGround = ground.GetOnGround();
         velocity = body.velocity;
 
         acceleration = onGround ? maxAcceleration : maxAirAcceleration;
