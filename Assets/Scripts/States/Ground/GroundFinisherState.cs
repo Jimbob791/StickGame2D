@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GroundFinisherState : MeleeBaseState
 {
-    private bool moved = false;
-
     public override void OnEnter(StateMachine _stateMachine)
     {
         base.OnEnter(_stateMachine);
@@ -19,9 +17,10 @@ public class GroundFinisherState : MeleeBaseState
         else
         {
             attackIndex = 3;
-            duration = 0.5f;
-            animator.SetTrigger("Attack" + attackIndex);
-            Debug.Log("Player Attack " + attackIndex + " Fired!");
+            duration = 2f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            animator.speed = 0.333333f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            animator.SetTrigger("GroundAttack" + attackIndex);
+            //Debug.Log("Player Attack " + attackIndex + " Fired!");
         }
     }
 
@@ -29,15 +28,10 @@ public class GroundFinisherState : MeleeBaseState
     {
         base.OnUpdate();
 
-        if (fixedtime >= 0.12f && moved == false)
+        if (fixedtime >= duration)
         {
-            moved = true;
-            body.AddForce(new Vector3(body.gameObject.GetComponent<Transform>().localScale.x, 0f, 0f) * 8f, ForceMode2D.Impulse);
-        }
-
-        if (fixedtime >= duration + 0.25f)
-        {
-             stateMachine.SetNextStateToMain();
+            animator.speed = 1;
+            stateMachine.SetNextStateToMain();
         }
     }
 }

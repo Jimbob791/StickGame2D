@@ -17,10 +17,10 @@ public class GroundEntryState : MeleeBaseState
         else
         {
             attackIndex = 1;
-            duration = 0.5f;
-            animator.SetTrigger("Attack" + attackIndex);
-            Debug.Log("Player Attack " + attackIndex + " Fired!");
-            body.AddForce(new Vector3(body.gameObject.GetComponent<Transform>().localScale.x, 0f, 0f) * 6f, ForceMode2D.Impulse);
+            duration = 1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            animator.speed = 0.333333f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            animator.SetTrigger("GroundAttack" + attackIndex);
+            //Debug.Log("Player Attack " + attackIndex + " Fired!");
         }
     }
 
@@ -28,16 +28,15 @@ public class GroundEntryState : MeleeBaseState
     {
         base.OnUpdate();
 
+        if (shouldCombo)
+        {
+            stateMachine.SetNextState(new GroundComboState());
+        }
+
         if (fixedtime >= duration)
         {
-            if (shouldCombo)
-            {
-                stateMachine.SetNextState(new GroundComboState());
-            }
-            else if (fixedtime >= duration + 0.25f)
-            {
-                stateMachine.SetNextStateToMain();
-            }
+            animator.speed = 1;
+            stateMachine.SetNextStateToMain();
         }
     }
 }

@@ -19,12 +19,13 @@ public class ComboCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && meleeStateMachine.CurrentState.GetType() == typeof(IdleCombatState))
+        if (Input.GetMouseButtonDown(0) && meleeStateMachine.CurrentState.GetType() == typeof(IdleCombatState))
         {
             if (transform.parent.GetComponent<Ground>().GetOnGround() == true)
             {
-                if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-                    meleeStateMachine.SetNextState(new GroundEntryState());
+                // if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+                //     meleeStateMachine.SetNextState(new GroundEntryState());
+                meleeStateMachine.SetNextState(new GroundEntryState());
             }
             else
             {

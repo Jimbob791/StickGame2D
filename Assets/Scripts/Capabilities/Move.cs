@@ -49,14 +49,7 @@ public class Move : MonoBehaviour
             sprite.localScale = new Vector3(direction.x, 1f, 1f);
         }
 
-        if (direction.x > 0 || direction.x < 0)
-        {
-            animator.SetBool("Running", true);
-        }
-        else
-        {
-            animator.SetBool("Running", false);
-        }
+        animator.SetFloat("Running", Mathf.Abs(direction.x));
     }
 
     private void FixedUpdate()
