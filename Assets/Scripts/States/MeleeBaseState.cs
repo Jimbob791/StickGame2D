@@ -41,7 +41,6 @@ public class MeleeBaseState : State
     {
         base.OnUpdate();
         AttackPressedTimer -= Time.deltaTime;
-        Debug.Log(AttackPressedTimer);
 
         if (animator.GetFloat("WeaponActive") > 0f)
         {

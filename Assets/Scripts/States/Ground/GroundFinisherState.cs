@@ -17,8 +17,8 @@ public class GroundFinisherState : MeleeBaseState
         else
         {
             attackIndex = 3;
-            duration = 2f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
-            animator.speed = 0.333333f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            duration = 1.9f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("GroundAttack" + attackIndex);
             //Debug.Log("Player Attack " + attackIndex + " Fired!");
         }
