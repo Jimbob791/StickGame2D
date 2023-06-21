@@ -77,7 +77,6 @@ public class MeleeBaseState : State
                 // Only check colliders with a valid Team Componnent attached
                 if (hitTeamComponent && hitTeamComponent.teamIndex == TeamIndex.Enemy)
                 {
-                    Debug.Log(collidersToDamage[i]);
                     GameObject.Instantiate(HitEffectPrefab, collidersToDamage[i].gameObject.transform.position, Quaternion.identity);
                     Debug.Log("Enemy Has Taken:" + attackIndex + "Damage");
                     collidersDamaged.Add(collidersToDamage[i]);

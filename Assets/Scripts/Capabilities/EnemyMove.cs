@@ -7,10 +7,12 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private Animator animator = null;
     [SerializeField] private Transform sprite = null;
     [SerializeField] private GameObject player = null;
+    [SerializeField] private LayerMask playerLayer;
     [SerializeField, Range(0f, 100f)] private float maxSpeed = 4f;
     [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
 
-    private Vector2 direction;
+    private Vector2 goal;
+    private Vector2 direction;    
     private Vector2 desiredVelocity;
     private Vector2 velocity;
     private Rigidbody2D body;
@@ -19,13 +21,14 @@ public class EnemyMove : MonoBehaviour
     private int spriteFlip;
     private float maxSpeedChange;
     private float acceleration;
-    private float state = "Idle";
+    private string state = "Idle";
     private bool onGround;
 
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
+        StartCoroutine(SetGoal());
     }
 
     void Update()
@@ -33,10 +36,10 @@ public class EnemyMove : MonoBehaviour
         onGround = ground.GetOnGround();
         animator.SetBool("Grounded", onGround);
 
-        RaycastHit2D leftCast = Physics2D.CircleCast(transform.position, 2f, new Vector2(-1, 0), 6f, playerLayer);
-        RaycastHit2D rightCast = Physics2D.CircleCast(transform.position, 2f, new Vector2(1, 0), 6f, playerLayer);
+        RaycastHit2D leftCast = Physics2D.CircleCast(transform.position, 1f, new Vector2(-1, 0), 4f, playerLayer);
+        RaycastHit2D rightCast = Physics2D.CircleCast(transform.position, 1f, new Vector2(1, 0), 4f, playerLayer);
 
-        if (leftCast != null || rightCast != null)
+        if (leftCast || rightCast)
         {
             state = "Attack";
         }
@@ -49,25 +52,28 @@ public class EnemyMove : MonoBehaviour
         {
             if (state == "Idle")
             {
-                if (Vecto2.Distance(transform.position, player.transform.position) <= 2f)
-                {
-                    animator.SetTrigger("Attack1");
-                }
+                direction.x = goal.x;
             }
             else if (state == "Attack")
             {
-                if (Vecto2.Distance(transform.position, player.transform.position) <= 2f)
+                if (Vector2.Distance(transform.position, player.transform.position) <= 1.5f)
                 {
                     animator.SetTrigger("Attack1");
                 }
-                else if (leftCast != null)
+
+                if (Vector2.Distance(transform.position, player.transform.position) > 1.5f)
                 {
-                    direction.x = -1f;
+                    animator.ResetTrigger("Attack1");
+                    if (leftCast)
+                    {
+                        direction.x = -1f;
+                    }
+                    else if (rightCast)
+                    {
+                        direction.x = 1f;
+                    }
                 }
-                else if (rightCast != null)
-                {
-                    direction.x = 1f;
-                }
+                
             }
         }
         else
@@ -89,10 +95,30 @@ public class EnemyMove : MonoBehaviour
     {
         velocity = body.velocity;
 
-        acceleration = onGround ? maxAcceleration : maxAirAcceleration;
+        acceleration = maxAcceleration;
         maxSpeedChange = acceleration * Time.deltaTime;
         velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
 
         body.velocity = velocity;
+    }
+
+    IEnumerator SetGoal()
+    {
+        int r = Random.Range(0, 3);
+        if (r == 0)
+        {
+            goal.x = 1;
+        }
+        else if (r == 1)
+        {
+            goal.x = -1;
+        }
+        else if (r >= 2)
+        {
+            goal.x = 0;
+        }
+
+        yield return new WaitForSeconds(Random.Range(1f, 3.5f));
+        StartCoroutine(SetGoal());
     }
 }
