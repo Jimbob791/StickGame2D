@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    [Header("Cape Offsets (Assume facing right)")]
+    [SerializeField] private Vector2 idleOffset = new Vector2(-0.01f, -0.1f);
+    [SerializeField] private float capeXMulti = 100;
+    [SerializeField] private float capeYMulti = 100;
+
+    [Header("Cape Anchor")]
+    [SerializeField] private CapeAnchor capeAnchor;
+
+    [Header("Input Variables")]
     [SerializeField] private InputController input = null;
     [SerializeField] private Animator animator = null;
     [SerializeField] private Transform sprite = null;
@@ -31,7 +40,6 @@ public class Move : MonoBehaviour
     void Update()
     {
         onGround = ground.GetOnGround();
-        animator.SetBool("Grounded", onGround);
 
         if (animator.GetFloat("Attacking") == 0f)
         {
@@ -49,7 +57,10 @@ public class Move : MonoBehaviour
             sprite.localScale = new Vector3(direction.x, 1f, 1f);
         }
 
+        UpdateCapeOffset();
+
         animator.SetFloat("Running", Mathf.Abs(direction.x));
+        animator.SetBool("Grounded", onGround);
     }
 
     private void FixedUpdate()
@@ -61,5 +72,20 @@ public class Move : MonoBehaviour
         velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
 
         body.velocity = velocity;
+    }
+
+    private void UpdateCapeOffset()
+    {
+        Vector2 currentOffset = idleOffset;
+
+        if (body.velocity.y != 0)
+        {
+            currentOffset = Vector2.zero;
+        }
+
+        currentOffset.x += (-1f * body.velocity.x) / capeXMulti;
+        currentOffset.y += (-1f * body.velocity.y) / capeYMulti;
+
+        capeAnchor.partOffset = currentOffset;        
     }
 }
