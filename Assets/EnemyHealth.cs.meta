@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/EnemyHealth.cs.meta
 guid: d1df7dd5109fdc84eac685305ba228b7
+========
+guid: 90188300ad86a1b44bbef7f3eae849ee
+>>>>>>>> origin/main:Assets/Scripts/CapeAnchor.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
