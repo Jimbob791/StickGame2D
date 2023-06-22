@@ -14,6 +14,10 @@ public class MeleeBaseState : State
     protected bool shouldCombo = false;
     // The attack index in the sequence of attacks
     protected int attackIndex;
+    // The knockback vector to apply
+    protected Vector2 knockback;
+    // The knockback time to apply
+    protected float stunTime;
 
 
 
@@ -78,8 +82,8 @@ public class MeleeBaseState : State
                 if (hitTeamComponent && hitTeamComponent.teamIndex == TeamIndex.Enemy)
                 {
                     GameObject.Instantiate(HitEffectPrefab, collidersToDamage[i].gameObject.transform.position, Quaternion.identity);
-                    Debug.Log("Enemy Has Taken:" + attackIndex + "Damage");
                     collidersDamaged.Add(collidersToDamage[i]);
+                    collidersToDamage[i].gameObject.GetComponent<EnemyMove>().Hit(-1 * attackIndex * attackIndex, knockback, stunTime);
                 }
             }
         }

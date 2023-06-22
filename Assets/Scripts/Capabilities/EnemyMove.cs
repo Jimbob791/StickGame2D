@@ -19,6 +19,7 @@ public class EnemyMove : MonoBehaviour
     private Ground ground;
     
     private int spriteFlip;
+    private float hitStun;
     private float maxSpeedChange;
     private float acceleration;
     private string state = "Idle";
@@ -33,8 +34,32 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
+        hitStun -= Time.deltaTime;
+
         onGround = ground.GetOnGround();
         animator.SetBool("Grounded", onGround);
+
+        if (body.velocity.x != 0)
+        {
+            if (body.velocity.x > 0)
+            {
+                sprite.localScale = new Vector3(1f, 1f, 1f);
+            }
+            if (body.velocity.x < 0)
+            {
+                sprite.localScale = new Vector3(-1f, 1f, 1f);
+            }
+        }
+
+        if (state == "Stunned")
+        {
+            if (onGround && hitStun <= 0)
+            {
+                state = "Idle";
+                animator.SetBool("Stunned", false);
+            }
+            return;
+        }
 
         RaycastHit2D leftCast = Physics2D.CircleCast(transform.position, 1f, new Vector2(-1, 0), 4f, playerLayer);
         RaycastHit2D rightCast = Physics2D.CircleCast(transform.position, 1f, new Vector2(1, 0), 4f, playerLayer);
@@ -83,16 +108,16 @@ public class EnemyMove : MonoBehaviour
 
         desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeed - ground.GetFriction(), 0f);
 
-        if (direction.x != 0)
-        {
-            sprite.localScale = new Vector3(direction.x, 1f, 1f);
-        }
-
         animator.SetFloat("Running", Mathf.Abs(direction.x));
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
+        if (state == "Stunned")
+        {
+            return;
+        }
+
         velocity = body.velocity;
 
         acceleration = maxAcceleration;
@@ -120,5 +145,19 @@ public class EnemyMove : MonoBehaviour
 
         yield return new WaitForSeconds(Random.Range(1f, 3.5f));
         StartCoroutine(SetGoal());
+    }
+
+    public void Hit(int damage, Vector2 knockback, float stunTime)
+    {
+        animator.SetBool("Stunned", true);
+        state = "Stunned";
+        animator.ResetTrigger("Attack1");
+        hitStun = stunTime;
+        if (player.transform.position.x >= transform.position.x)
+        {
+            knockback.x *= -1;
+        }
+        body.AddForce(knockback, ForceMode2D.Impulse);
+        gameObject.GetComponent<EnemyHealth>().ChangeHealth(damage);
     }
 }
