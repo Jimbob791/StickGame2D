@@ -9,22 +9,24 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private Slider slider;
 
     private int currentHealth;
+    private List<Coroutine> routines = new List<Coroutine>();
 
     void Start()
     {
         currentHealth = maxHealth;
     }
 
-    void Update()
-    {
-        if (currentHealth == maxHealth)
-        {
-            // hide bar
-        }
-    }
-
     public void ChangeHealth(int amount)
     {
+        foreach (Coroutine r in routines)
+        {
+            StopCoroutine(r);
+        }
+
+        slider.GetComponent<Animator>().SetBool("FadeIn", true);
+        Coroutine nr = StartCoroutine(AnimWait());
+        routines.Add(nr);
+          
         currentHealth += amount;
 
         slider.maxValue = maxHealth;
@@ -34,5 +36,11 @@ public class EnemyHealth : MonoBehaviour
         {
             // death
         }
+    }
+
+    IEnumerator AnimWait()
+    {
+        yield return new WaitForSeconds(2f);
+        slider.GetComponent<Animator>().SetBool("FadeIn", false);
     }
 }

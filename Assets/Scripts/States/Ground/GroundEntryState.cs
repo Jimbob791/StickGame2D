@@ -17,7 +17,7 @@ public class GroundEntryState : MeleeBaseState
         else
         {
             attackIndex = 1;
-            stunTime = 0f;
+            stunTime = 0.1f;
             knockback = new Vector2(0, 0);
             duration = 1.1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
