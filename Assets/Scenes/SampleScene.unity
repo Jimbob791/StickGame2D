@@ -1964,7 +1964,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1 &1124856356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,8 +2040,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124856356}
   m_CullTransparentMesh: 1
-=======
->>>>>>> origin/main
 --- !u!1 &1128162809
 GameObject:
   m_ObjectHideFlags: 0
@@ -3170,7 +3167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _teamIndex: 2
-<<<<<<< HEAD
 --- !u!114 &1790756525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3185,8 +3181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   slider: {fileID: 397385543}
-=======
->>>>>>> origin/main
 --- !u!1 &2055932084
 GameObject:
   m_ObjectHideFlags: 0
