@@ -147,13 +147,13 @@ public class EnemyMove : MonoBehaviour
         StartCoroutine(SetGoal());
     }
 
-    public void Hit(int damage, Vector2 knockback, float stunTime)
+    public void Hit(int damage, Vector2 knockback, float stunTime, GameObject source)
     {
         animator.SetBool("Stunned", true);
         state = "Stunned";
         animator.ResetTrigger("Attack1");
         hitStun = stunTime;
-        if (player.transform.position.x >= transform.position.x)
+        if (source.transform.position.x >= transform.position.x)
         {
             knockback.x *= -1;
         }
