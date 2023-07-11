@@ -20,6 +20,7 @@ public class Move : MonoBehaviour
     [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
     [SerializeField, Range(0f, 100f)] private float maxAirAcceleration = 20f;
 
+    public float facing;
     private Vector2 direction;
     private Vector2 desiredVelocity;
     private Vector2 velocity;
@@ -44,6 +45,8 @@ public class Move : MonoBehaviour
         if (animator.GetFloat("Attacking") == 0f)
         {
             direction.x = input.RetrieveMoveInput();
+            if (direction.x != 0f)
+                facing = direction.x;
         }
         else
         {

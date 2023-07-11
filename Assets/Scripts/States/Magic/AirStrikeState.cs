@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundSnapState : MagicBaseState
+public class AirStrikeState : MagicBaseState
 {
     public override void OnEnter(StateMachine _stateMachine)
     {
         base.OnEnter(_stateMachine);
 
         //Attack
-        if (body.gameObject.GetComponent<Ground>().GetOnGround() == false)
+        if (body.gameObject.GetComponent<Ground>().GetOnGround() == true)
         {
             stateMachine.SetNextStateToMain();
             duration = 0f;
@@ -17,11 +17,11 @@ public class GroundSnapState : MagicBaseState
         else
         {
             attackIndex = 1;
-            duration = 2f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
-            animator.speed = 0.4f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
-            animator.SetTrigger("GroundMagic" + attackIndex);
-            Debug.Log("Player Snapped " + attackIndex);
-            animator.gameObject.GetComponent<MagicManager>().SkyShardAttack();
+            duration = 0.666666666f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            animator.speed = 0.66666666f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            animator.SetTrigger("AirMagic" + attackIndex);
+            Debug.Log("Player Struck " + attackIndex);
+            animator.gameObject.GetComponent<MagicManager>().SkystrikeAttack();
         }
     }
 

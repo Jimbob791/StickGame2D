@@ -26,7 +26,7 @@ public class MagicBaseState : State
         body = GetComponent<Transform>().parent.GetComponent<Rigidbody2D>();
     }
 
-   public override void OnUpdate()
+    public override void OnUpdate()
     {
         base.OnUpdate();
     }

@@ -15,7 +15,7 @@ TagManager:
   - Player
   - Platforms
   - Enemies
-  - 
+  - Magic
   - 
   - 
   - 
@@ -42,9 +42,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
+  - name: Background-Backing
+    uniqueID: 47024777
+    locked: 0
+  - name: Background
+    uniqueID: 2171860391
+    locked: 0
+  - name: Midground
     uniqueID: 1753470725
     locked: 0
-  - name: UI
+  - name: Foreground
     uniqueID: 783358423
+    locked: 0
+  - name: Foreground-UI
+    uniqueID: 3602872583
     locked: 0
