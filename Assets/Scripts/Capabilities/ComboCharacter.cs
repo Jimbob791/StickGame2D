@@ -42,6 +42,18 @@ public class ComboCharacter : MonoBehaviour
                     meleeStateMachine.SetNextState(new AirStrikeState());
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.S) && Input.GetKeyDown(KeyCode.R))
+            {
+                if (transform.parent.GetComponent<Ground>().GetOnGround() == true)
+                {
+                    meleeStateMachine.SetNextStateToMain();
+                }
+                else
+                {
+                    meleeStateMachine.SetNextState(new AirSlamState());
+                }
+            }
         }        
     }
 }
