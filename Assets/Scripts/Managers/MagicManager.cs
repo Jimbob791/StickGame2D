@@ -41,7 +41,7 @@ public class MagicManager : MonoBehaviour
 
         for(int i = 0; i < 3; i++)
         {
-            yield return new WaitForSeconds(0.6666666f / multi);
+            yield return new WaitForSeconds(1f / multi);
             GameObject shard = GameObject.Instantiate(skyShard, new Vector3(castPos.x + (facing * 5) + (i * facing * 5), castPos.y + 20, 0f), Quaternion.identity);
             shards.Add(shard);
         }
