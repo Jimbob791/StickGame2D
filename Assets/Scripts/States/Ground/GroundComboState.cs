@@ -22,7 +22,7 @@ public class GroundComboState : MeleeBaseState
             duration = 1.1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("GroundAttack" + attackIndex);
-            //Debug.Log("Player Attack " + attackIndex + " Fired!");
+            body.AddForce(new Vector3(8 * body.gameObject.GetComponent<Move>().facing, 0, 0), ForceMode2D.Impulse);
         } 
     }
 

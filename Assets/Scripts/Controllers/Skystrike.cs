@@ -21,7 +21,6 @@ public class Skystrike : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, 10f);
-        GetComponent<AudioSource>().Play();
     }
 
     void Update()

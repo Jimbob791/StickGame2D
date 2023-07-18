@@ -7,6 +7,7 @@ public class MagicManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject skyShard;
     [SerializeField] private GameObject skyStrike;
+    [SerializeField] private GameObject skySlam;
 
     private float multi;
     private List<GameObject> shards;
@@ -19,6 +20,13 @@ public class MagicManager : MonoBehaviour
     public void SkystrikeAttack()
     {
         StartCoroutine(SpawnSkystrike());
+    }
+
+    public void SkySlamAttack()
+    {
+        Vector2 castPos = transform.position;
+        GameObject slam = GameObject.Instantiate(skySlam, new Vector3(castPos.x, castPos.y - 0.8125f, 0f), Quaternion.identity);
+        Destroy(slam, 1f);
     }
 
     private IEnumerator SpawnSkyShards()

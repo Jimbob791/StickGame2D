@@ -23,7 +23,7 @@ public class AirSlamState : MagicBaseState
             animator.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("AirMagic" + attackIndex);
             Debug.Log("Player Slam " + attackIndex);
-            body.velocity = new Vector3(0, 0.2f, 0);
+            body.AddForce(new Vector3(0, 8f, 0), ForceMode2D.Impulse);
             canMove = true;
         }
     }
@@ -34,7 +34,7 @@ public class AirSlamState : MagicBaseState
 
         if (fixedtime >= duration / 2 && canMove)
         {
-            body.AddForce(new Vector3(0, -20f, 0), ForceMode2D.Impulse);
+            body.AddForce(new Vector3(0, -200f, 0), ForceMode2D.Impulse);
             canMove = false;
         }
 
@@ -42,7 +42,7 @@ public class AirSlamState : MagicBaseState
         {
             animator.speed = 1;
             stateMachine.SetNextStateToMain();
-            animator.gameObject.GetComponent<MagicManager>().SkystrikeAttack();
+            animator.gameObject.GetComponent<MagicManager>().SkySlamAttack();
         }
     }
 }

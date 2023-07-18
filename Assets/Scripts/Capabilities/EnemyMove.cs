@@ -25,10 +25,11 @@ public class EnemyMove : MonoBehaviour
     private string state = "Idle";
     private bool onGround;
 
-    void Awake()
+    void Start()
     {
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
+        player = GameObject.Find("Player");
         StartCoroutine(SetGoal());
     }
 

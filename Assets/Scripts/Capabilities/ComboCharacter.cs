@@ -8,6 +8,7 @@ public class ComboCharacter : MonoBehaviour
 
     [SerializeField] public Collider2D hitbox;
     [SerializeField] public GameObject Hiteffect;
+    private bool groundMoves;
 
     void Start()
     {
@@ -17,43 +18,48 @@ public class ComboCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (meleeStateMachine.CurrentState.GetType() == typeof(IdleCombatState))
+        groundMoves = transform.parent.GetComponent<Ground>().GetOnGround();
+        if (meleeStateMachine.CurrentState.GetType() != typeof(IdleCombatState))
+        {
+            return;
+        }
+        
+        if (groundMoves)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (transform.parent.GetComponent<Ground>().GetOnGround() == true)
-                {
-                    meleeStateMachine.SetNextState(new GroundEntryState());
-                }
-                else
-                {
-                    meleeStateMachine.SetNextStateToMain();
-                }
+                meleeStateMachine.SetNextState(new GroundEntryState());
             }
-
-            if (Input.GetKeyDown(KeyCode.R))
+            else if (Input.GetKeyDown(KeyCode.R))
             {
-                if (transform.parent.GetComponent<Ground>().GetOnGround() == true)
+                meleeStateMachine.SetNextState(new GroundSnapState());
+            }
+            else
+            {
+                meleeStateMachine.SetNextStateToMain();
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                meleeStateMachine.SetNextState(new AirEntryState());
+            }
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                if(Input.GetKey(KeyCode.S))
                 {
-                    meleeStateMachine.SetNextState(new GroundSnapState());
+                    meleeStateMachine.SetNextState(new AirSlamState());
                 }
                 else
                 {
                     meleeStateMachine.SetNextState(new AirStrikeState());
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.S) && Input.GetKeyDown(KeyCode.R))
+            else
             {
-                if (transform.parent.GetComponent<Ground>().GetOnGround() == true)
-                {
-                    meleeStateMachine.SetNextStateToMain();
-                }
-                else
-                {
-                    meleeStateMachine.SetNextState(new AirSlamState());
-                }
+                meleeStateMachine.SetNextStateToMain();
             }
-        }        
+        }       
     }
 }
