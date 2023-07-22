@@ -19,8 +19,13 @@ public class ComboCharacter : MonoBehaviour
     void Update()
     {
         groundMoves = transform.parent.GetComponent<Ground>().GetOnGround();
+
         if (meleeStateMachine.CurrentState.GetType() != typeof(IdleCombatState))
         {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                meleeStateMachine.SetNextState(new BaseWarpState());
+            }
             return;
         }
         
@@ -33,6 +38,10 @@ public class ComboCharacter : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.R))
             {
                 meleeStateMachine.SetNextState(new GroundSnapState());
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                meleeStateMachine.SetNextState(new BaseWarpState());
             }
             else
             {
@@ -55,6 +64,10 @@ public class ComboCharacter : MonoBehaviour
                 {
                     meleeStateMachine.SetNextState(new AirStrikeState());
                 }
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                meleeStateMachine.SetNextState(new BaseWarpState());
             }
             else
             {

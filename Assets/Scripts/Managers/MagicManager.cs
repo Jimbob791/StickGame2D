@@ -26,7 +26,7 @@ public class MagicManager : MonoBehaviour
     {
         Vector2 castPos = transform.position;
         GameObject slam = GameObject.Instantiate(skySlam, new Vector3(castPos.x, castPos.y - 0.8125f, 0f), Quaternion.identity);
-        Destroy(slam, 1f);
+        Destroy(slam, 2f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier);
     }
 
     private IEnumerator SpawnSkyShards()

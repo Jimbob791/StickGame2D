@@ -38,7 +38,7 @@ public class EnemyAttack : MonoBehaviour
                     if (hitTeamComponent && hitTeamComponent.teamIndex == TeamIndex.Player)
                     {
                         GameObject.Instantiate(HitEffectPrefab, collidersToDamage[i].gameObject.transform.position, Quaternion.identity);
-                        Debug.Log("Player Has Taken Damage");
+                        collidersToDamage[i].gameObject.GetComponent<PlayerHealth>().ChangeHealth(-1);
                         collidersDamaged.Add(collidersToDamage[i]);
                     }
                 }

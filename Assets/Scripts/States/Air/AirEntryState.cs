@@ -22,6 +22,7 @@ public class AirEntryState : MeleeBaseState
             duration = 1.1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("AirAttack" + attackIndex);
+            body.velocity = new Vector3(body.gameObject.GetComponent<Move>().facing * 10f, 3f, 0f);
         }
     }
 
@@ -37,6 +38,7 @@ public class AirEntryState : MeleeBaseState
         if (fixedtime >= duration)
         {
             animator.speed = 1;
+            body.gravityScale = 1f;
             stateMachine.SetNextStateToMain();
         }
     }
