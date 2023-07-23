@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [Range(0, 200)] public int maxHealth;
     [SerializeField] private Slider slider;
+    [SerializeField] private StyleEvent killEvent;
 
     private int currentHealth;
     private List<Coroutine> routines = new List<Coroutine>();
@@ -34,7 +35,8 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            // death
+            EventManager.current.StartKillEvent(killEvent);
+            Destroy(gameObject);
         }
     }
 

@@ -513,8 +513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1df7dd5109fdc84eac685305ba228b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 40
   slider: {fileID: 3338974393713887293}
+  killEvent: {fileID: 11400000, guid: 8a910492a05bd154a9ff448c73396e59, type: 2}
 --- !u!1 &3338974394047339583
 GameObject:
   m_ObjectHideFlags: 0
