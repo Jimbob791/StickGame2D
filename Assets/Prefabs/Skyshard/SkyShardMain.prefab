@@ -249,9 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8119416426642be4a90be487eab1aaff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 100
+  fallSpeed: 250
   landDamage: 10
-  ruptureDamange: 30
+  ruptureDamage: 30
   stunTime: 1
   knockback: {x: 2, y: 6}
   animator: {fileID: 2540214013380143919}

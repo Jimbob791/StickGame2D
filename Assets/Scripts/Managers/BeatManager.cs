@@ -8,6 +8,7 @@ public class BeatManager : MonoBehaviour
     public float multiplier;
 
     private float timeSinceLastBeat;
+    private float beatDuration;
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class BeatManager : MonoBehaviour
     {
         timeSinceLastBeat += Time.deltaTime;
 
-        if (timeSinceLastBeat >= 1 / multiplier) 
+        if (timeSinceLastBeat >= beatDuration) 
         {
             timeSinceLastBeat = 0;
             Debug.Log("beat");
@@ -31,15 +32,16 @@ public class BeatManager : MonoBehaviour
     {
         multiplier = bpm / 60;
         bpm = _bpm;
+        beatDuration = 1 / multiplier;
     }
 
     private void PlayerInput()
     {
-        if (timeSinceLastBeat < 0.1f || timeSinceLastBeat > (1 / multiplier) - 0.1f)
+        if (timeSinceLastBeat < beatDuration / 5 || timeSinceLastBeat > beatDuration - (beatDuration / 5))
         {
             EventManager.current.StartFullBeat();
         }
-        if (timeSinceLastBeat > ((1 / multiplier) / 2) - 0.1f || timeSinceLastBeat < ((1 / multiplier) / 2) + 0.1f)
+        else if (timeSinceLastBeat < (beatDuration / 2) + (beatDuration / 5) && timeSinceLastBeat > (beatDuration / 2) - (beatDuration / 5))
         {
             EventManager.current.StartHalfBeat();
         }
