@@ -25,6 +25,7 @@ public class ComboCharacter : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 meleeStateMachine.SetNextState(new BaseWarpState());
+                EventManager.current.StartInputAction();
             }
             return;
         }
@@ -34,14 +35,17 @@ public class ComboCharacter : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 meleeStateMachine.SetNextState(new GroundEntryState());
+                EventManager.current.StartInputAction();
             }
             else if (Input.GetKeyDown(KeyCode.R))
             {
                 meleeStateMachine.SetNextState(new GroundSnapState());
+                EventManager.current.StartInputAction();
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
                 meleeStateMachine.SetNextState(new BaseWarpState());
+                EventManager.current.StartInputAction();
             }
             else
             {
@@ -53,21 +57,25 @@ public class ComboCharacter : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 meleeStateMachine.SetNextState(new AirEntryState());
+                EventManager.current.StartInputAction();
             }
             else if (Input.GetKeyDown(KeyCode.R))
             {
                 if(Input.GetKey(KeyCode.S))
                 {
                     meleeStateMachine.SetNextState(new AirSlamState());
+                    EventManager.current.StartInputAction();
                 }
                 else
                 {
                     meleeStateMachine.SetNextState(new AirStrikeState());
+                    EventManager.current.StartInputAction();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
                 meleeStateMachine.SetNextState(new BaseWarpState());
+                EventManager.current.StartInputAction();
             }
             else
             {

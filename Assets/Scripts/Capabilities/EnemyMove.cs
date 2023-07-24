@@ -11,6 +11,13 @@ public class EnemyMove : MonoBehaviour
     [SerializeField, Range(0f, 100f)] private float maxSpeed = 4f;
     [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
 
+    [Header("Style Events")]
+    [SerializeField] private StyleEvent killEvent;
+    [SerializeField] private StyleEvent slamEvent;
+    [SerializeField] private StyleEvent strikeEvent;
+    [SerializeField] private StyleEvent skyShardEvent;
+
+
     private Vector2 goal;
     private Vector2 direction;    
     private Vector2 desiredVelocity;
@@ -148,7 +155,7 @@ public class EnemyMove : MonoBehaviour
         StartCoroutine(SetGoal());
     }
 
-    public void Hit(int damage, Vector2 knockback, float stunTime, GameObject source)
+    public void Hit(int damage, Vector2 knockback, float stunTime, GameObject source, string type)
     {
         animator.SetBool("Stunned", true);
         state = "Stunned";
@@ -159,6 +166,28 @@ public class EnemyMove : MonoBehaviour
             knockback.x *= -1;
         }
         body.AddForce(knockback, ForceMode2D.Impulse);
-        gameObject.GetComponent<EnemyHealth>().ChangeHealth(damage);
+
+        StyleEvent attackEvent = null;
+
+        switch (type)
+        {
+            case "sword":
+                attackEvent = killEvent;
+                break;
+            case "slamShards":
+                attackEvent = slamEvent;
+                break;
+            case "skyShard":
+                attackEvent = skyShardEvent;
+                break;
+            case "skyStrike":
+                attackEvent = strikeEvent;
+                break;
+            default:
+                attackEvent = killEvent;
+                break;
+        }
+
+        gameObject.GetComponent<EnemyHealth>().ChangeHealth(damage, attackEvent);
     }
 }

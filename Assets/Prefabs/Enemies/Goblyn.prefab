@@ -484,6 +484,10 @@ MonoBehaviour:
     m_Bits: 64
   maxSpeed: 1
   maxAcceleration: 35
+  killEvent: {fileID: 11400000, guid: 8a910492a05bd154a9ff448c73396e59, type: 2}
+  slamEvent: {fileID: 11400000, guid: ab2c6c906b110ac439a3bd3377967e31, type: 2}
+  strikeEvent: {fileID: 11400000, guid: ceb6a240dbbb88644ab2ae8e13600c4d, type: 2}
+  skyShardEvent: {fileID: 11400000, guid: ec7b9dd1022370443ab8b477ca8fd30c, type: 2}
 --- !u!114 &3338974393897472465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +519,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 40
   slider: {fileID: 3338974393713887293}
-  killEvent: {fileID: 11400000, guid: 8a910492a05bd154a9ff448c73396e59, type: 2}
 --- !u!1 &3338974394047339583
 GameObject:
   m_ObjectHideFlags: 0

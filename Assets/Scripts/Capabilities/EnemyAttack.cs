@@ -22,7 +22,6 @@ public class EnemyAttack : MonoBehaviour
     {
         if (animator.GetFloat("WeaponActive") > 0f)
         {
-            Debug.Log("Check"); 
             Collider2D[] collidersToDamage = new Collider2D[10];
             ContactFilter2D filter = new ContactFilter2D();
             filter.useTriggers = true;

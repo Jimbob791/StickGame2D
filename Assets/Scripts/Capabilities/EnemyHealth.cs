@@ -7,7 +7,6 @@ public class EnemyHealth : MonoBehaviour
 {
     [Range(0, 200)] public int maxHealth;
     [SerializeField] private Slider slider;
-    [SerializeField] private StyleEvent killEvent;
 
     private int currentHealth;
     private List<Coroutine> routines = new List<Coroutine>();
@@ -17,7 +16,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount, StyleEvent aEvent)
     {
         foreach (Coroutine r in routines)
         {
@@ -27,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
         slider.GetComponent<Animator>().SetBool("FadeIn", true);
         Coroutine nr = StartCoroutine(AnimWait());
         routines.Add(nr);
-          
+        
         currentHealth += amount;
 
         slider.maxValue = maxHealth;
@@ -35,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            EventManager.current.StartKillEvent(killEvent);
+            EventManager.current.StartKillEvent(aEvent);
             Destroy(gameObject);
         }
     }

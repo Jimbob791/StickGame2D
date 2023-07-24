@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Kill
   m_EditorClassIdentifier: 
   description: KILL
-  points: 80
+  points: 60
   textColour: {r: 1, g: 1, b: 1, a: 1}

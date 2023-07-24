@@ -83,7 +83,7 @@ public class MeleeBaseState : State
                 {
                     GameObject.Instantiate(HitEffectPrefab, collidersToDamage[i].gameObject.transform.position, Quaternion.identity);
                     collidersDamaged.Add(collidersToDamage[i]);
-                    collidersToDamage[i].gameObject.GetComponent<EnemyMove>().Hit(-1 * attackIndex * attackIndex, knockback, stunTime, body.gameObject);
+                    collidersToDamage[i].gameObject.GetComponent<EnemyMove>().Hit(-1 * attackIndex * attackIndex, knockback, stunTime, body.gameObject, "sword");
                 }
             }
         }

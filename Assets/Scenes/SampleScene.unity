@@ -2365,7 +2365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bpm: 120
-  multiplier: 2
+  multiplier: 0
 --- !u!4 &1084554728
 Transform:
   m_ObjectHideFlags: 0
@@ -16951,7 +16951,7 @@ Tilemap:
       - {fileID: 927661071, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
       - {fileID: -1608785839, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
       - {fileID: 2144531213, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
-      m_AnimationSpeed: 12.528275
+      m_AnimationSpeed: 13.119198
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 9, y: -4, z: 0}
@@ -16965,7 +16965,7 @@ Tilemap:
       - {fileID: 927661071, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
       - {fileID: -1608785839, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
       - {fileID: 2144531213, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
-      m_AnimationSpeed: 11.921528
+      m_AnimationSpeed: 11.440512
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 10, y: -4, z: 0}
@@ -16979,7 +16979,7 @@ Tilemap:
       - {fileID: 927661071, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
       - {fileID: -1608785839, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
       - {fileID: 2144531213, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
-      m_AnimationSpeed: 10.3510685
+      m_AnimationSpeed: 13.056545
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 11, y: -4, z: 0}
@@ -16993,7 +16993,7 @@ Tilemap:
       - {fileID: 927661071, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
       - {fileID: -1608785839, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
       - {fileID: 2144531213, guid: 7b54f9dfab879ce4abd22fba81594ba5, type: 3}
-      m_AnimationSpeed: 12.162256
+      m_AnimationSpeed: 10.612312
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -18107,6 +18107,10 @@ MonoBehaviour:
   barEnd1: {fileID: 1787966658}
   barEnd2: {fileID: 431906127}
   styleEventObject: {fileID: 7206034027698731214, guid: abca7d7485ec77a47b15476ca831c6bd, type: 3}
+  barLeftAnim: {fileID: 1787966657}
+  barBottomAnim: {fileID: 431906126}
+  onBeatEvent: {fileID: 11400000, guid: b3abb6f4a5f020f43a9c6635e1626f91, type: 2}
+  onHalfBeatEvent: {fileID: 11400000, guid: a87f2f9eaa040bb4cba8ce43102fa144, type: 2}
   styleLogo: {fileID: 1460287705}
   levels:
   - {fileID: 11400000, guid: 7b836f71c61840b479fb7028b8604d7c, type: 2}

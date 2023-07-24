@@ -11,6 +11,7 @@ public class EventManager : MonoBehaviour
 
     public event Action FullBeat;
     public event Action HalfBeat;
+    public event Action InputAction;
 
     private void Awake()
     {
@@ -22,9 +23,9 @@ public class EventManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void StartKillEvent(StyleEvent sEvent)
+    public void StartKillEvent(StyleEvent styEvent)
     {
-        OnKillEvent?.Invoke(sEvent);
+        OnKillEvent?.Invoke(styEvent);
     }
 
     public void StartFullBeat()
@@ -35,5 +36,10 @@ public class EventManager : MonoBehaviour
     public void StartHalfBeat()
     {
         HalfBeat?.Invoke();
+    }
+
+    public void StartInputAction()
+    {
+        InputAction?.Invoke();
     }
 }

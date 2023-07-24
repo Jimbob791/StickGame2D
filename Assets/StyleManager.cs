@@ -16,6 +16,11 @@ public class StyleManager : MonoBehaviour
     [SerializeField] private Image barEnd2 = null;
 
     [SerializeField] private GameObject styleEventObject = null;
+    [SerializeField] private Animator barLeftAnim = null;
+    [SerializeField] private Animator barBottomAnim = null;
+
+    [SerializeField] private StyleEvent onBeatEvent = null;
+    [SerializeField] private StyleEvent onHalfBeatEvent = null;
 
     [SerializeField] private Image styleLogo = null;
     [SerializeField] private List<StyleLevel> levels = new List<StyleLevel>();
@@ -31,6 +36,8 @@ public class StyleManager : MonoBehaviour
     void Start()
     {
         EventManager.current.OnKillEvent += StyleEventTrigger;
+        EventManager.current.FullBeat += FullBeatEvent;
+        EventManager.current.HalfBeat += HalfBeatEvent;
     }
 
     void Update()
@@ -69,19 +76,27 @@ public class StyleManager : MonoBehaviour
 
         meterFill.color = currentLevel.lightCol;
         barEnd1.color = currentLevel.lightCol;
+
+        // Set Animator Speeds
+        barBottomAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+        barLeftAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
     }
 
     private void StyleEventTrigger(StyleEvent sEvent)
     {
         style += sEvent.points;
+        Debug.Log(sEvent);
 
+        GameObject newObj = GameObject.Instantiate(styleEventObject, eventOffset + new Vector3(0, -50 * (numEventsActive), 0), Quaternion.identity);
         numEventsActive += 1;
-        GameObject newObj = GameObject.Instantiate(styleEventObject, eventOffset + new Vector3(0, -50 * (numEventsActive - 1), 0), Quaternion.identity);
         styleObjects.Add(newObj);
-        newObj.transform.SetParent(gameObject.transform, false);
+
         newObj.GetComponent<StyleEventController>().slot = numEventsActive;
-        styleEventObject.GetComponent<StyleEventController>().textToSet = sEvent.description;
-        styleEventObject.GetComponent<StyleEventController>().col = sEvent.textColour;
+        newObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = sEvent.description;
+        newObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = sEvent.textColour;
+
+        newObj.transform.SetParent(gameObject.transform, false);
+
         StartCoroutine(DestroyEvent(newObj));
     }
 
@@ -98,5 +113,15 @@ public class StyleManager : MonoBehaviour
         if (numEventsActive < 0)
             numEventsActive = 0;
         Destroy(obj);
+    }
+
+    private void FullBeatEvent()
+    {
+        StyleEventTrigger(onBeatEvent);
+    }
+
+    private void HalfBeatEvent()
+    {
+        StyleEventTrigger(onHalfBeatEvent);
     }
 }

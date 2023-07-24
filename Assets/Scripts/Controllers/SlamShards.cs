@@ -13,6 +13,7 @@ public class SlamShards : MonoBehaviour
     [SerializeField] private GameObject HitEffectPrefab;
 
     private int damageToDeal;
+    private string attackName = "slamShards";
     private Collider2D hitCollider;
     private List<Collider2D> collidersDamaged = new List<Collider2D>();
 
@@ -41,7 +42,7 @@ public class SlamShards : MonoBehaviour
                 {
                     GameObject.Instantiate(HitEffectPrefab, collidersToDamage[i].gameObject.transform.position, Quaternion.identity);
                     collidersDamaged.Add(collidersToDamage[i]);
-                    collidersToDamage[i].gameObject.GetComponent<EnemyMove>().Hit(-1 * damageToDeal, knockback, stunTime, this.gameObject);
+                    collidersToDamage[i].gameObject.GetComponent<EnemyMove>().Hit(-1 * damageToDeal, knockback, stunTime, this.gameObject, attackName);
                 }
             }
         }
