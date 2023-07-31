@@ -14,7 +14,7 @@ public class IntroManager : MonoBehaviour
         metronomeAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
         for (int i = 0; i < 120; i++)
         {
-            globalLight.color
+            globalLight.color = 
         }
         globalLight.color
         mainVolume.
