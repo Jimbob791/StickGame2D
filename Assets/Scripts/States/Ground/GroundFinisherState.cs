@@ -18,6 +18,7 @@ public class GroundFinisherState : MeleeBaseState
         {
             attackIndex = 3;
             stunTime = 1.5f;
+            damage = 8;
             knockback = new Vector2(4, 6);
             duration = 1.9f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;

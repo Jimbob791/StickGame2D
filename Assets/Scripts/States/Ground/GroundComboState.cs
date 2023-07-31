@@ -18,6 +18,7 @@ public class GroundComboState : MeleeBaseState
         {
             attackIndex = 2;
             stunTime = 0.6f;
+            damage = 6;
             knockback = new Vector2(1, 1);
             duration = 1.1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;

@@ -10,7 +10,7 @@ public class MagicManager : MonoBehaviour
     [SerializeField] private GameObject skySlam;
 
     private float multi;
-    private List<GameObject> shards;
+    private List<GameObject> shards = new List<GameObject>();
 
     public void SkyShardAttack()
     {
@@ -37,20 +37,21 @@ public class MagicManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f / multi);
 
-        shards = new List<GameObject>();
-
         for(int i = 0; i < 3; i++)
         {
-            yield return new WaitForSeconds(1f / multi);
+            yield return new WaitForSeconds(0.5f / multi);
             GameObject shard = GameObject.Instantiate(skyShard, new Vector3(castPos.x + (facing * 5) + (i * facing * 5), castPos.y + 20, 0f), Quaternion.identity);
             shards.Add(shard);
         }
 
-        yield return new WaitForSeconds(1f / multi);
+        yield return new WaitForSeconds(0.5f / multi);
 
-        foreach(GameObject shard in shards)
+        int shardCount = shards.Count + 1;
+
+        for(int i = 0; i < shardCount; i++)
         {
-            shard.gameObject.GetComponent<SkyShard>().Rupture();
+            shards[0].gameObject.GetComponent<SkyShard>().Rupture();
+            shards.Remove(shards[0]);
         }
     }
 

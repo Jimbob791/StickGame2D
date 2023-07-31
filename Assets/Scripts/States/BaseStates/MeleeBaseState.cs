@@ -27,6 +27,8 @@ public class MeleeBaseState : State
     private List<Collider2D> collidersDamaged;
     // The Hit Effect to Spawn on the hit Enemy
     private GameObject HitEffectPrefab;
+    // damage to deal
+    protected int damage;
 
     // Input buffer Timer
     private float AttackPressedTimer = 0;
@@ -83,7 +85,7 @@ public class MeleeBaseState : State
                 {
                     GameObject.Instantiate(HitEffectPrefab, collidersToDamage[i].gameObject.transform.position, Quaternion.identity);
                     collidersDamaged.Add(collidersToDamage[i]);
-                    collidersToDamage[i].gameObject.GetComponent<EnemyMove>().Hit(-1 * attackIndex * attackIndex, knockback, stunTime, body.gameObject, "sword");
+                    collidersToDamage[i].gameObject.GetComponent<EnemyMove>().Hit(-1 * damage, knockback, stunTime, body.gameObject, "sword");
                 }
             }
         }

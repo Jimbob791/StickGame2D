@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AirFinisherState : MeleeBaseState
+public class AirBonusState : MeleeBaseState
 {
     public override void OnEnter(StateMachine _stateMachine)
     {
@@ -11,29 +11,31 @@ public class AirFinisherState : MeleeBaseState
         //Attack
         if (body.gameObject.GetComponent<Ground>().GetOnGround() == true)
         {
-            stateMachine.SetNextStateToMain();
-            duration = 0f;
+            attackIndex = 1;
+            stunTime = 1.5f;
+            damage = 12;
+            knockback = new Vector2(2, 10);
+            duration = 1.1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            animator.SetTrigger("GroundAirAttack3");
+            body.velocity = new Vector3(body.gameObject.GetComponent<Move>().facing * 10f, 18f, 0f);
         }
         else
         {
-            attackIndex = 2;
+            attackIndex = 3;
             stunTime = 1.5f;
-            damage = 5;
-            knockback = new Vector2(4, 6);
+            damage = 8;
+            knockback = new Vector2(2, 8);
             duration = 1.1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
-            animator.SetTrigger("AirAttack" + attackIndex);
-            body.velocity = new Vector3(body.gameObject.GetComponent<Move>().facing * 10f, 3f, 0f);
+            animator.SetTrigger("GroundAirAttack3");
+            body.velocity = new Vector3(body.gameObject.GetComponent<Move>().facing * 10f, 5f, 0f);    
         }
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (shouldCombo)
-        {
-            stateMachine.SetNextState(new AirBonusState());
-        }
 
         if (fixedtime >= duration)
         {

@@ -34,8 +34,16 @@ public class ComboCharacter : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                meleeStateMachine.SetNextState(new GroundEntryState());
-                EventManager.current.StartInputAction();
+                if (Input.GetKey(KeyCode.W))
+                {
+                    meleeStateMachine.SetNextState(new AirBonusState());
+                    EventManager.current.StartInputAction();
+                }
+                else
+                {
+                    meleeStateMachine.SetNextState(new GroundEntryState());
+                    EventManager.current.StartInputAction();
+                }
             }
             else if (Input.GetKeyDown(KeyCode.R))
             {
