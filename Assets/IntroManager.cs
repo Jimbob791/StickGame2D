@@ -1,23 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class IntroManager : MonoBehaviour
 {
     [SerializeField] private Animator metronomeAnim;
-    [SerializeField] private VolumeProfile mainVolume;
-    [SerializeFiled] private Light2D globalLight;
+    [SerializeField] private Animator vignetteAnim;
+    [SerializeField] private UnityEngine.Rendering.VolumeProfile introProfile;
+    [SerializeField] private Light2D globalLight;
 
     private IEnumerator Start()
     {
         metronomeAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
-        for (int i = 0; i < 120; i++)
-        {
-            globalLight.color = 
-        }
-        globalLight.color
-        mainVolume.
+        vignetteAnim.speed = 1f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
         
+        yield return null;
     }
 }
