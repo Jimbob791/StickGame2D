@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class IntroManager : MonoBehaviour
 {
+    [SerializeField] private Animator needleAnim;
     [SerializeField] private Animator metronomeAnim;
     [SerializeField] private Animator vignetteAnim;
     [SerializeField] private UnityEngine.Rendering.VolumeProfile introProfile;
@@ -13,9 +14,13 @@ public class IntroManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        metronomeAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+        needleAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
         vignetteAnim.speed = 1f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
         
-        yield return null;
+        yield return new WaitForSeconds(4);
+
+        vignetteAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+        metronomeAnim.SetTrigger("StartIntro");
+        vignetteAnim.SetTrigger("IntroTransition");
     }
 }
