@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Jump : MonoBehaviour
 {
-    [SerializeField] private InputController input = null;
+    [Header("Jump Variables")]
     [SerializeField] private Animator animator = null;
     [SerializeField, Range(0f, 100f)] private float jumpHeight = 3f;
     [SerializeField, Range(0, 5)] private int maxAirJumps = 0;
     [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
     [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
     [SerializeField, Range(0f, 5f)] private float stallMovementMultiplier = 0.5f;
+
+    [Header("Input System")]
+    public PlayerControls playerControls;
+    private InputAction jump;
 
     private Rigidbody2D body;
     private Ground ground;
@@ -23,15 +28,23 @@ public class Jump : MonoBehaviour
 
     void Awake()
     {
+        playerControls = new PlayerControls();
+
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
 
         defaultGravityScale = 1f;
     }
 
+    void OnEnable()
+    {
+        jump = playerControls.Player.Jump;
+        jump.Enable();
+    }
+
     void Update()
     {
-        desiredJump |= input.RetrieveJumpInput();
+        desiredJump |= jump.ReadValue<float>() > 0f ? true : false;
     }
 
     private void FixedUpdate()

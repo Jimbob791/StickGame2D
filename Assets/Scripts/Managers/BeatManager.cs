@@ -24,7 +24,6 @@ public class BeatManager : MonoBehaviour
         if (timeSinceLastBeat >= beatDuration) 
         {
             timeSinceLastBeat -= beatDuration;
-            Debug.Log("beat");
         }
     }
 

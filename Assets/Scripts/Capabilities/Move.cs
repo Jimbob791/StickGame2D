@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Move : MonoBehaviour
 {
@@ -12,8 +13,11 @@ public class Move : MonoBehaviour
     [Header("Cape Anchor")]
     [SerializeField] private CapeAnchor capeAnchor;
 
+    [Header("Input System")]
+    public PlayerControls playerControls;
+    private InputAction move;
+
     [Header("Input Variables")]
-    [SerializeField] private InputController input = null;
     [SerializeField] private Animator animator = null;
     [SerializeField] private Transform sprite = null;
     [SerializeField, Range(0f, 100f)] private float maxSpeed = 4f;
@@ -32,8 +36,20 @@ public class Move : MonoBehaviour
     private float acceleration;
     private bool onGround;
 
+    void OnEnable()
+    {
+        move = playerControls.Player.Move;
+        move.Enable();
+    }
+
+    void OnDisable()
+    {
+        move.Disable();
+    }
+
     void Awake()
     {
+        playerControls = new PlayerControls();
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
     }
@@ -44,7 +60,7 @@ public class Move : MonoBehaviour
 
         if (animator.GetFloat("Attacking") == 0f)
         {
-            direction.x = input.RetrieveMoveInput();
+            direction.x = move.ReadValue<Vector2>().x;
             if (direction.x != 0f)
                 facing = direction.x;
         }
@@ -57,7 +73,7 @@ public class Move : MonoBehaviour
 
         if (direction.x != 0)
         {
-            sprite.localScale = new Vector3(direction.x, 1f, 1f);
+            sprite.localScale = new Vector3(1f, 1f, 1f);
         }
 
         UpdateCapeOffset();
