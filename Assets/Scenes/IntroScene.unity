@@ -293,7 +293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8262780829893976827, guid: 85c984581adb00a4ba497008b018ce13, type: 3}
       propertyPath: bpm
-      value: 150
+      value: 86
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85c984581adb00a4ba497008b018ce13, type: 3}
@@ -526,11 +526,11 @@ MonoBehaviour:
   minHeight: 0.1
   maxHeight: 1.4
   visualizerObjects: []
-  audioClip: {fileID: 8300000, guid: 66ed6d9fca4eb93449461c0b00ddc4c0, type: 3}
+  audioClip: {fileID: 8300000, guid: 5d57bb80e6559924a89fda3cf61ecc3c, type: 3}
   updateSpeed: 0.15
-  multiplier: 55
+  multiplier: 45
   loop: 1
-  visualizerSamples: 512
+  visualizerSamples: 1024
   audioSource: {fileID: 1929913612}
 --- !u!1 &97669328
 GameObject:
