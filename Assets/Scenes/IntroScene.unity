@@ -260,7 +260,7 @@ MonoBehaviour:
   needleAnim: {fileID: 1552423816}
   metronomeAnim: {fileID: 973522121}
   vignetteAnim: {fileID: 1051772807}
-  menuMusic: {fileID: 11400000, guid: 5ed5084f8075abe47b4f76fc71898590, type: 2}
+  menuMusic: {fileID: 11400000, guid: 67abcb127ff1fd442bc6e6148e5ebbc6, type: 2}
   globalLight: {fileID: 1509284306}
 --- !u!4 &45266940
 Transform:
@@ -5199,7 +5199,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.07
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
