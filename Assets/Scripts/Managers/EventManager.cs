@@ -19,7 +19,7 @@ public class EventManager : MonoBehaviour
             current = this;
         else
             Destroy(gameObject);
-        
+
         DontDestroyOnLoad(gameObject);
     }
 

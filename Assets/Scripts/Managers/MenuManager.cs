@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,10 +12,17 @@ public class MenuManager : MonoBehaviour
     {
         backgroundAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
         eyeAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+        Debug.Log(GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier);
     }
 
-    void Update()
+    public void ExitGame()
     {
-        
+        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
+    }
+
+    public void LoadLevelSelect()
+    {
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 }

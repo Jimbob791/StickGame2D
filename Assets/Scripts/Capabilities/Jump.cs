@@ -14,7 +14,7 @@ public class Jump : MonoBehaviour
     [SerializeField, Range(0f, 5f)] private float stallMovementMultiplier = 0.5f;
 
     [Header("Input System")]
-    public PlayerControls playerControls;
+    private PlayerControls playerControls;
     private InputAction jump;
 
     private Rigidbody2D body;
@@ -44,7 +44,7 @@ public class Jump : MonoBehaviour
 
     void Update()
     {
-        desiredJump |= jump.ReadValue<float>() > 0f ? true : false;
+        desiredJump |= jump.triggered && jump.ReadValue<float>() > 0f;
     }
 
     private void FixedUpdate()

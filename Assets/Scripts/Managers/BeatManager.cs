@@ -10,7 +10,7 @@ public class BeatManager : MonoBehaviour
     private float timeSinceLastBeat;
     private float beatDuration;
 
-    void Start()
+    void Awake()
     {
         NewBpm(bpm);
         EventManager.current.InputAction += PlayerInput;

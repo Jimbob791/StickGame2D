@@ -6,10 +6,8 @@ public class VisualizerManager : MonoBehaviour
 {
     public float minHeight, maxHeight;
     public VisualizerObject[] visualizerObjects;
-    public AudioClip audioClip;
     public float updateSpeed = 0.5f;
     public float multiplier = 5f;
-    public bool loop = true;
     [Space(15), Range(64, 8192)]
     public int visualizerSamples;
 
@@ -18,15 +16,8 @@ public class VisualizerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
+        audioSource = GameObject.Find("MusicSource").GetComponent<AudioSource>();
         visualizerObjects = GetComponentsInChildren<VisualizerObject>();
-
-        if (!audioClip)
-            return;
-
-        audioSource.loop = loop;
-        audioSource.clip = audioClip;
-        audioSource.Play();
     }
 
     // Update is called once per frame

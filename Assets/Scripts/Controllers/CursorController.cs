@@ -6,6 +6,20 @@ public class CursorController : MonoBehaviour
 {
     private Vector3 worldPosition;
 
+    public GameObject cursorSprite;
+
+    public CursorController current;
+
+    void Start()
+    {
+        if (current == null)
+            current = this;
+        else
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Update()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -14,8 +28,8 @@ public class CursorController : MonoBehaviour
 
         Cursor.visible = false;
 
-        transform.position = worldPosition;
+        cursorSprite.transform.position = worldPosition;
 
-        GetComponent<Animator>().speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+        cursorSprite.GetComponent<Animator>().speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
     }
 }

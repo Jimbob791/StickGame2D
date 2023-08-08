@@ -14,7 +14,7 @@ public class Move : MonoBehaviour
     [SerializeField] private CapeAnchor capeAnchor;
 
     [Header("Input System")]
-    public PlayerControls playerControls;
+    private PlayerControls playerControls;
     private InputAction move;
 
     [Header("Input Variables")]
@@ -73,7 +73,7 @@ public class Move : MonoBehaviour
 
         if (direction.x != 0)
         {
-            sprite.localScale = new Vector3(1f, 1f, 1f);
+            sprite.localScale = new Vector3(facing, 1f, 1f);
         }
 
         UpdateCapeOffset();
