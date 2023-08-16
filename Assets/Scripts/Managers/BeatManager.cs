@@ -29,7 +29,7 @@ public class BeatManager : MonoBehaviour
 
     public void NewBpm(float _bpm)
     {
-        multiplier = bpm / 60;
+        multiplier = _bpm / 60;
         bpm = _bpm;
         beatDuration = 1 / multiplier;
     }

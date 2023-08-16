@@ -21,12 +21,13 @@ public class IntroManager : MonoBehaviour
         musicSource.clip = menuMusic.songClip;
         GameObject.Find("BeatManager").GetComponent<BeatManager>().NewBpm(menuMusic.songBpm);
 
+        musicSource.time = menuMusic.startOffset * (60 / menuMusic.songBpm);
         musicSource.Play();
 
         needleAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
         vignetteAnim.speed = 1f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
         
-        yield return new WaitForSeconds(GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier * menuMusic.beatsBeforeDrop);
+        yield return new WaitForSeconds((menuMusic.beatsBeforeDrop * (60 / menuMusic.songBpm)) - (menuMusic.startOffset * (60 / menuMusic.songBpm)));
 
         vignetteAnim.speed = 0.5f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
         metronomeAnim.SetTrigger("StartIntro");

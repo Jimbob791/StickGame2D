@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f772c824a1b0364a8321222770f779e, type: 3}
-  m_Name: Burning
+  m_Name: Forged
   m_EditorClassIdentifier: 
-  songClip: {fileID: 8300000, guid: 206a25c68bed17c4db00a439e3d0c3ca, type: 3}
-  songBpm: 112
-  beatsBeforeDrop: 128
-  startOffset: 120
+  songClip: {fileID: 8300000, guid: 642ab7b6c691d50458d06e5c65ade04e, type: 3}
+  songBpm: 86
+  beatsBeforeDrop: 64
+  startOffset: 56
