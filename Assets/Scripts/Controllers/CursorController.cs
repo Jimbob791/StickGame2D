@@ -8,18 +8,6 @@ public class CursorController : MonoBehaviour
 
     public GameObject cursorSprite;
 
-    public CursorController current;
-
-    void Start()
-    {
-        if (current == null)
-            current = this;
-        else
-            Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
-    }
-
     void Update()
     {
         Vector3 mousePos = Input.mousePosition;

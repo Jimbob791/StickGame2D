@@ -25,4 +25,9 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
+
+    public void LoadOptions()
+    {
+        SceneManager.LoadScene("LevelCompleteScene", LoadSceneMode.Single);
+    }
 }

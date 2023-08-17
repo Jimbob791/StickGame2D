@@ -30,6 +30,9 @@ public class LevelCompleteManager : MonoBehaviour
 
     void Start()
     {
+        musicSource = GameObject.Find("MusicSource").GetComponent<AudioSource>();
+        musicSource.Stop();
+
         victoryText.text = win ? levelInfo.worldNum + "-" + levelInfo.levelNum + " VICTORY" : levelInfo.worldNum + "-" + levelInfo.levelNum + " FAILURE";
         victoryText.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = win ? levelInfo.worldNum + "-" + levelInfo.levelNum + " VICTORY" : levelInfo.worldNum + "-" + levelInfo.levelNum + " FAILURE";
         victoryText.gameObject.transform.parent.GetComponent<Image>().sprite = win ? titleWinSprite : titleLostSprite;
@@ -49,9 +52,6 @@ public class LevelCompleteManager : MonoBehaviour
         rhythmText.text = "Rhythm: " + (numBeats * 20).ToString();
         rhythmText.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Rhythm: " + (numBeats * 20).ToString();
 
-
-
-        musicSource = GameObject.Find("MusicSource").GetComponent<AudioSource>();
         musicSource.clip = levelInfo.levelMusic.songClip;
         musicSource.time = levelInfo.levelMusic.startOffset * (60 / levelInfo.levelMusic.songBpm);
         musicSource.Play();
