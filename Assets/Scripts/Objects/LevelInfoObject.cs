@@ -6,6 +6,8 @@ using UnityEngine;
 public class LevelInfoObject : ScriptableObject
 {
     public string sceneName;
+    public string levelName;
+    public Sprite levelImage;
     public LevelMusicObject levelMusic;
     public int worldNum;
     public int levelNum;

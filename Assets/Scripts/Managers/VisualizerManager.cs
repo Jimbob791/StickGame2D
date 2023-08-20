@@ -30,7 +30,10 @@ public class VisualizerManager : MonoBehaviour
 
         for (int i = 0; i < visualizerObjects.Length; i++)
         {
-            visualizerObjects[i].GetComponent<SpriteRenderer>().color = objectColor;
+            if (visualizerObjects[i].GetComponent<SpriteRenderer>() != null)
+            {
+                visualizerObjects[i].GetComponent<SpriteRenderer>().color = objectColor;
+            }
             Vector2 newSize = visualizerObjects[i].GetComponent<Transform>().localScale;
             newSize.y = Mathf.Clamp(Mathf.Lerp(newSize.y, minHeight + (spectrumData[i] * (maxHeight - minHeight) * multiplier), updateSpeed), minHeight, maxHeight);
             visualizerObjects[i].GetComponent<Transform>().localScale = newSize;

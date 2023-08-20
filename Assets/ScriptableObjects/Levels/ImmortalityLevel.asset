@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eb8b75f11c4f4c44ab4d7bc7558a899, type: 3}
-  m_Name: DemoLevel
+  m_Name: ImmortalityLevel
   m_EditorClassIdentifier: 
-  sceneName: DemoLevelScene
-  levelMusic: {fileID: 11400000, guid: 67abcb127ff1fd442bc6e6148e5ebbc6, type: 2}
+  sceneName: SampleScene
+  levelName: Immortality
+  levelImage: {fileID: 21300000, guid: ed94bf02fc6fa5849907eb32a0a7d8f8, type: 3}
+  levelMusic: {fileID: 11400000, guid: 9e9d2ee79b98e7742b7c7a3a9b5f0a40, type: 2}
   worldNum: 1
-  levelNum: 2
+  levelNum: 5
