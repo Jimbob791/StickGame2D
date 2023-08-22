@@ -23,7 +23,7 @@ public class MenuManager : MonoBehaviour
 
     public void LoadLevelSelect()
     {
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("levelSelectScene", LoadSceneMode.Single);
     }
 
     public void LoadOptions()

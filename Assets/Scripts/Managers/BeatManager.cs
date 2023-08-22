@@ -40,9 +40,5 @@ public class BeatManager : MonoBehaviour
         {
             EventManager.current.StartFullBeat();
         }
-        else if (timeSinceLastBeat < (beatDuration / 2) + (beatDuration / 5) && timeSinceLastBeat > (beatDuration / 2) - (beatDuration / 5))
-        {
-            EventManager.current.StartHalfBeat();
-        }
     }
 }

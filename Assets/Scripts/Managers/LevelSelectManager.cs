@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class LevelSelectManager : MonoBehaviour
     [Header("Input System")]
     private PlayerControls playerControls;
     private InputAction navigate;
+    private InputAction submit;
 
     private int selected = 0;
     private float lastX;
@@ -25,12 +27,15 @@ public class LevelSelectManager : MonoBehaviour
     void OnEnable()
     {
         navigate = playerControls.UI.Navigate;
+        submit = playerControls.UI.Submit;
         navigate.Enable();
+        submit.Enable();
     }
 
     void OnDisable()
     {
         navigate.Disable();
+        submit.Disable();
     }
 
     void Awake()
@@ -45,6 +50,9 @@ public class LevelSelectManager : MonoBehaviour
             GameObject newPreview = Instantiate(previewPrefab, new Vector3(i * 20, 3.8f, 0), Quaternion.identity);
             previews.Add(newPreview);
         }
+        GameObject.Find("MusicSource").GetComponent<AudioSource>().clip = levelList[selected].levelMusic.songClip;
+        GameObject.Find("MusicSource").GetComponent<AudioSource>().time = (levelList[selected].levelMusic.startOffset - 1) * (60 / levelList[selected].levelMusic.songBpm);
+        GameObject.Find("MusicSource").GetComponent<AudioSource>().Play();
     }
 
     void Update()
@@ -59,7 +67,7 @@ public class LevelSelectManager : MonoBehaviour
             preview.transform.position = Vector3.Lerp(preview.transform.position, new Vector3((levelIndex - selected) * 20, 3.8f, 0), updateSpeed);
         }
 
-        levelTitle.text = levelList[selected].levelName + " - " + levelList[selected].levelMusic.songBpm + "BPM";
+        levelTitle.text = levelList[selected].levelName + " - " + levelList[selected].levelMusic.songBpm + " BPM";
 
         float inputx = navigate.ReadValue<Vector2>().x;
 
@@ -78,6 +86,13 @@ public class LevelSelectManager : MonoBehaviour
             GameObject.Find("MusicSource").GetComponent<AudioSource>().time = (levelList[selected].levelMusic.startOffset - 1) * (60 / levelList[selected].levelMusic.songBpm);
             GameObject.Find("MusicSource").GetComponent<AudioSource>().Play();
         }
+
+        if (submit.triggered && submit.ReadValue<float>() > 0f)
+        {
+            GameObject.Find("LoadManager").GetComponent<LoadManager>().currentLevel = levelList[selected];
+            SceneManager.LoadScene(levelList[selected].sceneName, LoadSceneMode.Single);
+        }
+
         lastX = inputx;
     }
 }
