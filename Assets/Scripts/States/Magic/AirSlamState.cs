@@ -5,10 +5,19 @@ using UnityEngine;
 public class AirSlamState : MagicBaseState
 {
     private bool canMove;
+    private bool canCast = true;
 
     public override void OnEnter(StateMachine _stateMachine)
     {
         base.OnEnter(_stateMachine);
+
+        if (body.gameObject.GetComponent<PlayerHealth>().CheckMana(60) == false)
+        {
+            stateMachine.SetNextStateToMain();
+            duration = 0f;
+            canCast = false;
+            return;
+        }
 
         //Attack
         if (body.gameObject.GetComponent<Ground>().GetOnGround() == true)
@@ -42,7 +51,10 @@ public class AirSlamState : MagicBaseState
         {
             animator.speed = 1;
             stateMachine.SetNextStateToMain();
-            animator.gameObject.GetComponent<MagicManager>().SkySlamAttack();
+            if(canCast)
+            {
+                animator.gameObject.GetComponent<MagicManager>().SkySlamAttack();
+            }
         }
     }
 }

@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [Range(0, 20)] public int maxHealth;
-    [Range(0, 200)] public int maxMana;
+    [Range(0, 200)] public float maxMana;
     [SerializeField] private HealthBarManager barManager;
     [SerializeField] private Slider manaSlider;
+    [SerializeField] private float manaGrowth;
 
     public int currentHealth;
-    public int currentMana;
+    public float currentMana;
     private List<Coroutine> routines = new List<Coroutine>();
     private bool invincible = false;
 
@@ -24,7 +25,26 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        currentMana += manaGrowth * Time.deltaTime;
+        if (currentMana > maxMana)
+        {
+            currentMana = maxMana;
+        }
+        manaSlider.value = currentMana / maxMana;
+    }
 
+    public bool CheckMana(float cost)
+    {
+        if(currentMana >= cost)
+        {
+            currentMana -= cost;
+            manaSlider.value = currentMana / maxMana;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void ChangeHealth(int amount)

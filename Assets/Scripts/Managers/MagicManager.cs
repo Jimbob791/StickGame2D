@@ -8,6 +8,7 @@ public class MagicManager : MonoBehaviour
     [SerializeField] private GameObject skyShard;
     [SerializeField] private GameObject skyStrike;
     [SerializeField] private GameObject skySlam;
+    [SerializeField] private PlayerHealth manaManager;
 
     private float multi;
     private List<GameObject> shards = new List<GameObject>();

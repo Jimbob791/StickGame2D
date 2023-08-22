@@ -18,6 +18,7 @@ public class LoadManager : MonoBehaviour
 
         if (scene.name == "SampleScene")
         {
+            GameObject.Find("BeatManager").GetComponent<BeatManager>().NewBpm(currentLevel.levelMusic.songBpm);
             musicSource.clip = currentLevel.levelMusic.songClip;
             musicSource.time = 0f;
             musicSource.Play();

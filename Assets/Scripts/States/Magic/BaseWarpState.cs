@@ -8,6 +8,13 @@ public class BaseWarpState : MagicBaseState
     {
         base.OnEnter(_stateMachine);
 
+        if (body.gameObject.GetComponent<PlayerHealth>().CheckMana(20) == false)
+        {
+            stateMachine.SetNextStateToMain();
+            duration = 0f;
+            return;
+        }
+
         //Attack
         if (body.gameObject.GetComponent<Ground>().GetOnGround() == false)
         {
