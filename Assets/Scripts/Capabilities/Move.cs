@@ -30,6 +30,7 @@ public class Move : MonoBehaviour
     private Vector2 velocity;
     private Rigidbody2D body;
     private Ground ground;
+    private GameObject lastCheckpoint;
     
     private int spriteFlip;
     private float maxSpeedChange;
@@ -106,5 +107,19 @@ public class Move : MonoBehaviour
         currentOffset.y += (-1f * body.velocity.y) / capeYMulti;
 
         capeAnchor.partOffset = currentOffset;        
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log(col.gameObject.tag);
+        if (col.gameObject.tag == "Checkpoint")
+        {
+            lastCheckpoint = col.gameObject;
+        }
+        if (col.gameObject.tag == "Void")
+        {
+            transform.position = lastCheckpoint.transform.position;
+            body.velocity = Vector3.zero;
+        }
     }
 }

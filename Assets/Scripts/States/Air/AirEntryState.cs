@@ -20,7 +20,7 @@ public class AirEntryState : MeleeBaseState
             stunTime = 0.5f;
             damage = 4;
             knockback = new Vector2(1, 2);
-            duration = 1.1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+            duration = 1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("AirAttack" + attackIndex);
             body.velocity = new Vector3(body.gameObject.GetComponent<Move>().facing * 10f, 3f, 0f);

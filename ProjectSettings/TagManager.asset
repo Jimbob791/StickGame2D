@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Platform
+  - Void
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - Platforms
   - Enemies
   - Magic
-  - 
-  - 
+  - Void
+  - Checkpoints
   - 
   - 
   - 
