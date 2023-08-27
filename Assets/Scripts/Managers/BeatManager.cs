@@ -17,6 +17,11 @@ public class BeatManager : MonoBehaviour
         timeSinceLastBeat = 0f;
     }
 
+    void OnDisable()
+    {
+        EventManager.current.InputAction -= PlayerInput;
+    }
+
     void Update()
     {
         timeSinceLastBeat += Time.deltaTime;

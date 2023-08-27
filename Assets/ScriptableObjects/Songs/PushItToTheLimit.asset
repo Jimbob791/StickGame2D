@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songClip: {fileID: 8300000, guid: c5fe3031ec75b114c9482a6633174865, type: 3}
   songBpm: 172
-  beatsBeforeDrop: 128
-  startOffset: 128
+  beatsBeforeDrop: 188
+  startOffset: 164

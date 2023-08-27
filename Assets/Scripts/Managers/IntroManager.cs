@@ -10,15 +10,19 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private Animator metronomeAnim;
     [SerializeField] private Animator vignetteAnim;
 
-    public LevelMusicObject menuMusic;
+    public LevelMusicObject[] menuMusicList;
     private AudioSource musicSource;
 
     [SerializeField] private Light2D globalLight;
 
     private IEnumerator Start()
     {
+        LevelMusicObject menuMusic = menuMusicList[Random.Range(0, menuMusicList.Length)];
+
         musicSource = GameObject.Find("MusicSource").GetComponent<AudioSource>();
         musicSource.clip = menuMusic.songClip;
+        StartCoroutine(FadeAudioSource.StartFade(musicSource, 3f, 0.07f));
+
         GameObject.Find("BeatManager").GetComponent<BeatManager>().NewBpm(menuMusic.songBpm);
 
         musicSource.time = menuMusic.startOffset * (60 / menuMusic.songBpm);

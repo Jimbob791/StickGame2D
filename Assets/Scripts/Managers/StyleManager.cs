@@ -7,6 +7,7 @@ using TMPro;
 public class StyleManager : MonoBehaviour
 {
     public StyleLevel currentLevel;
+    public float totalStyle;
 
     [SerializeField] private Slider scoreMeter = null;
     [SerializeField] private Image meterBacking = null;
@@ -38,6 +39,14 @@ public class StyleManager : MonoBehaviour
         EventManager.current.OnKillEvent += StyleEventTrigger;
         EventManager.current.FullBeat += FullBeatEvent;
         EventManager.current.HalfBeat += HalfBeatEvent;
+        totalStyle = 0f;
+    }
+
+    void OnDisable()
+    {
+        EventManager.current.OnKillEvent -= StyleEventTrigger;
+        EventManager.current.FullBeat -= FullBeatEvent;
+        EventManager.current.HalfBeat -= HalfBeatEvent;
     }
 
     void Update()
@@ -85,6 +94,7 @@ public class StyleManager : MonoBehaviour
     private void StyleEventTrigger(StyleEvent sEvent)
     {
         style += sEvent.points;
+        totalStyle += sEvent.points;
         Debug.Log(sEvent);
 
         GameObject newObj = GameObject.Instantiate(styleEventObject, eventOffset + new Vector3(0, -50 * (numEventsActive), 0), Quaternion.identity);
@@ -95,7 +105,7 @@ public class StyleManager : MonoBehaviour
         newObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = sEvent.description;
         newObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = sEvent.textColour;
 
-        newObj.transform.SetParent(gameObject.transform, false);
+        newObj.transform.SetParent(this.gameObject.transform, false);
 
         StartCoroutine(DestroyEvent(newObj));
     }
@@ -108,7 +118,7 @@ public class StyleManager : MonoBehaviour
         foreach (GameObject g in styleObjects)
         {
             if (g.GetComponent<StyleEventController>().slot > obj.GetComponent<StyleEventController>().slot)
-                g.GetComponent<StyleEventController>().slot -= 1;
+                g.GetComponent<StyleEventController>().slot -= 1; 
         }
         if (numEventsActive < 0)
             numEventsActive = 0;

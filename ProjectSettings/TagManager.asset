@@ -7,6 +7,8 @@ TagManager:
   - Platform
   - Void
   - Checkpoint
+  - Portal
+  - StyleMeter
   layers:
   - Default
   - TransparentFX

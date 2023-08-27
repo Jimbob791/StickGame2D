@@ -21271,12 +21271,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelList:
-  - {fileID: 11400000, guid: 94b0a8a53e202cf41ac9b42ef7669423, type: 2}
-  - {fileID: 11400000, guid: b1378a95075b21247a74eb6dafa35394, type: 2}
   - {fileID: 11400000, guid: 69b4dd879de05af4aa317455f4eff3d0, type: 2}
+  - {fileID: 11400000, guid: 90dc1db1099cd204884e97dfd9335420, type: 2}
+  - {fileID: 11400000, guid: 94b0a8a53e202cf41ac9b42ef7669423, type: 2}
+  - {fileID: 11400000, guid: 8d0879074016f7942a1f40e3f42b5334, type: 2}
   - {fileID: 11400000, guid: 7788e983e47fb7941ae9419b17b935b1, type: 2}
   - {fileID: 11400000, guid: e86c66c4d440ac94f9d07876714f6099, type: 2}
   - {fileID: 11400000, guid: 7fa21a13d4270d647bb1a8486a1cbde4, type: 2}
+  - {fileID: 11400000, guid: 1c2072eaeb7c97841b656dfb96694600, type: 2}
+  - {fileID: 11400000, guid: b1378a95075b21247a74eb6dafa35394, type: 2}
   previewPrefab: {fileID: 684733577863622494, guid: a66d926f149d3e7459755fed170bc92f, type: 3}
   updateSpeed: 0.04
   levelTitle: {fileID: 1661350672}
@@ -21521,6 +21524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
+  beatManager: {fileID: 0}
 --- !u!1 &922745199
 GameObject:
   m_ObjectHideFlags: 0

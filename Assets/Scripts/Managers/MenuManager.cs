@@ -28,6 +28,6 @@ public class MenuManager : MonoBehaviour
 
     public void LoadOptions()
     {
-        SceneManager.LoadScene("LevelCompleteScene", LoadSceneMode.Single);
+        
     }
 }

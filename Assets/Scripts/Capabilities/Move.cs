@@ -121,5 +121,9 @@ public class Move : MonoBehaviour
             transform.position = lastCheckpoint.transform.position;
             body.velocity = Vector3.zero;
         }
+        if (col.gameObject.tag == "Portal")
+        {
+            GameObject.Find("LoadManager").GetComponent<LoadManager>().LevelComplete();
+        }
     }
 }
