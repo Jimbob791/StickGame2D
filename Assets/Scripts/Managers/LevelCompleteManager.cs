@@ -31,8 +31,12 @@ public class LevelCompleteManager : MonoBehaviour
 
     void Start()
     {
+        // Set Level Information
+        levelInfo = GameObject.Find("LoadManager").GetComponent<LoadManager>().currentLevel;
+
         // Stop old music
         musicSource = GameObject.Find("MusicSource").GetComponent<AudioSource>();
+        musicSource.volume = 0f;
         musicSource.Stop();
 
         // Set title
@@ -66,6 +70,7 @@ public class LevelCompleteManager : MonoBehaviour
         rhythmText.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Rhythm: " + (numBeats * 20).ToString();
 
         // Start music
+        StartCoroutine(FadeAudioSource.StartFade(musicSource, 3f, 0.05f));
         musicSource.clip = levelInfo.levelMusic.songClip;
         musicSource.time = levelInfo.levelMusic.startOffset * (60 / levelInfo.levelMusic.songBpm);
         musicSource.Play();

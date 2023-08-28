@@ -540,7 +540,7 @@ MonoBehaviour:
   updateSpeed: 0.15
   multiplier: 20
   visualizerSamples: 1024
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1446252888}
 --- !u!1 &116812832
 GameObject:
   m_ObjectHideFlags: 0
@@ -5747,7 +5747,7 @@ MonoBehaviour:
   updateSpeed: 0.15
   multiplier: 20
   visualizerSamples: 1024
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1446252888}
 --- !u!1 &347327374
 GameObject:
   m_ObjectHideFlags: 0
@@ -11199,6 +11199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
+  beatManager: {fileID: 0}
 --- !u!1 &1694260946
 GameObject:
   m_ObjectHideFlags: 0

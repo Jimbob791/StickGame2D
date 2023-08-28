@@ -21281,7 +21281,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c2072eaeb7c97841b656dfb96694600, type: 2}
   - {fileID: 11400000, guid: b1378a95075b21247a74eb6dafa35394, type: 2}
   previewPrefab: {fileID: 684733577863622494, guid: a66d926f149d3e7459755fed170bc92f, type: 3}
-  updateSpeed: 0.04
+  updateSpeed: 0.03
   levelTitle: {fileID: 1661350672}
   levelScore: {fileID: 1134346028}
   levelScoreBacking: {fileID: 992506818}

@@ -73,6 +73,7 @@ public class LevelSelectManager : MonoBehaviour
 
         if (inputx != 0f && lastX == 0f)
         {
+            StartCoroutine(FadeBack());
             selected += inputx > 0f ? 1 : -1;
             if (selected < 0)
             {
@@ -82,9 +83,6 @@ public class LevelSelectManager : MonoBehaviour
             {
                 selected = 0;
             }
-            GameObject.Find("MusicSource").GetComponent<AudioSource>().clip = levelList[selected].levelMusic.songClip;
-            GameObject.Find("MusicSource").GetComponent<AudioSource>().time = (levelList[selected].levelMusic.startOffset - 1) * (60 / levelList[selected].levelMusic.songBpm);
-            GameObject.Find("MusicSource").GetComponent<AudioSource>().Play();
         }
 
         if (submit.triggered && submit.ReadValue<float>() > 0f)
@@ -94,5 +92,18 @@ public class LevelSelectManager : MonoBehaviour
         }
 
         lastX = inputx;
+    }
+
+    IEnumerator FadeBack()
+    {
+        StartCoroutine(FadeAudioSource.StartFade(GameObject.Find("MusicSource").GetComponent<AudioSource>(), 0.2f, 0f));
+
+        yield return new WaitForSeconds(0.1f);
+        GameObject.Find("MusicSource").GetComponent<AudioSource>().clip = levelList[selected].levelMusic.songClip;
+        GameObject.Find("MusicSource").GetComponent<AudioSource>().time = (levelList[selected].levelMusic.startOffset - 1) * (60 / levelList[selected].levelMusic.songBpm);
+        GameObject.Find("MusicSource").GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(0.1f);
+
+        StartCoroutine(FadeAudioSource.StartFade(GameObject.Find("MusicSource").GetComponent<AudioSource>(), 0.2f, 0.07f));
     }
 }
