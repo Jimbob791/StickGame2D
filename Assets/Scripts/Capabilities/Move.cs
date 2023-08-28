@@ -63,7 +63,10 @@ public class Move : MonoBehaviour
         {
             direction.x = move.ReadValue<Vector2>().x;
             if (direction.x != 0f)
+            {
+                direction.Normalize();
                 facing = direction.x;
+            }
         }
         else
         {

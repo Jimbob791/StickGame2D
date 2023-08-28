@@ -46,8 +46,8 @@ public class LevelCompleteManager : MonoBehaviour
         float finalScore = (levelStyle) + timeScore + (numBeats * 20);
 
         // Set score text
-        scoreText.text = "Score: " + finalScore.ToString();
-        scoreText.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Score: " + finalScore.ToString();
+        scoreText.text = "Score: " + ((int)finalScore).ToString();
+        scoreText.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Score: " + ((int)finalScore).ToString();
         scoreText.gameObject.transform.parent.GetComponent<Image>().sprite = win ? scoreWinSprite : scoreLostSprite;
 
         // Set style text
@@ -56,7 +56,8 @@ public class LevelCompleteManager : MonoBehaviour
         styleText.gameObject.transform.parent.GetComponent<Image>().sprite = win ? infoWinSprite : infoLostSprite;
 
         // Set time text
-        string timeStr = "Speed: " + TimeSpan.FromSeconds(timeSeconds);
+        string timeStr = TimeSpan.FromSeconds(timeSeconds).ToString();
+        timeStr = "Time: " + timeStr.Substring(3, 5);
         speedText.text = timeStr;
         speedText.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = timeStr;
 

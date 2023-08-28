@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MeleeBaseState : State
 {
@@ -33,8 +34,16 @@ public class MeleeBaseState : State
     // Input buffer Timer
     private float AttackPressedTimer = 0;
 
+    // Input System
+    private PlayerControls playerControls;
+    private InputAction basicAttack;
+
     public override void OnEnter(StateMachine _stateMachine)
     {
+        playerControls = new PlayerControls();
+        basicAttack = playerControls.Player.BasicAttack;
+        basicAttack.Enable();
+
         base.OnEnter(_stateMachine);
         animator = GetComponent<Animator>();
         body = GetComponent<Transform>().parent.GetComponent<Rigidbody2D>();
@@ -53,7 +62,7 @@ public class MeleeBaseState : State
             Attack();
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (basicAttack.triggered && basicAttack.ReadValue<float>() > 0f)
         {
             if (animator.GetFloat("AttackWindow") > 0f)
             {

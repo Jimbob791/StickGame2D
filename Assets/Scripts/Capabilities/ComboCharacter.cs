@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ComboCharacter : MonoBehaviour
 {
@@ -9,6 +10,33 @@ public class ComboCharacter : MonoBehaviour
     [SerializeField] public Collider2D hitbox;
     [SerializeField] public GameObject Hiteffect;
     private bool groundMoves;
+
+    [Header("Input System")]
+    private PlayerControls playerControls;
+    private InputAction basicAttack;
+    private InputAction magicAttack;
+    private InputAction teleport;
+    private InputAction lookUp;
+    private InputAction lookDown;
+
+    void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    void OnEnable()
+    {
+        basicAttack = playerControls.Player.BasicAttack;
+        basicAttack.Enable();
+        magicAttack = playerControls.Player.BasicMagicAttack;
+        magicAttack.Enable();
+        teleport = playerControls.Player.Teleport;
+        teleport.Enable();
+        lookUp = playerControls.Player.LookUp;
+        lookUp.Enable();
+        lookDown = playerControls.Player.LookDown;
+        lookDown.Enable();
+    }
 
     void Start()
     {
@@ -22,7 +50,7 @@ public class ComboCharacter : MonoBehaviour
 
         if (meleeStateMachine.CurrentState.GetType() != typeof(IdleCombatState))
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (teleport.triggered && teleport.ReadValue<float>() > 0f)
             {
                 meleeStateMachine.SetNextState(new BaseWarpState());
                 EventManager.current.StartInputAction();
@@ -32,9 +60,9 @@ public class ComboCharacter : MonoBehaviour
         
         if (groundMoves)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (basicAttack.triggered && basicAttack.ReadValue<float>() > 0f)
             {
-                if (Input.GetKey(KeyCode.W))
+                if (lookUp.ReadValue<float>() > 0f)
                 {
                     meleeStateMachine.SetNextState(new AirBonusState());
                     EventManager.current.StartInputAction();
@@ -45,12 +73,12 @@ public class ComboCharacter : MonoBehaviour
                     EventManager.current.StartInputAction();
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.R))
+            else if (magicAttack.triggered && magicAttack.ReadValue<float>() > 0f)
             {
                 meleeStateMachine.SetNextState(new GroundSnapState());
                 EventManager.current.StartInputAction();
             }
-            else if (Input.GetKeyDown(KeyCode.E))
+            else if (teleport.triggered && teleport.ReadValue<float>() > 0f)
             {
                 meleeStateMachine.SetNextState(new BaseWarpState());
                 EventManager.current.StartInputAction();
@@ -62,14 +90,14 @@ public class ComboCharacter : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButtonDown(0))
+            if (basicAttack.triggered && basicAttack.ReadValue<float>() > 0f)
             {
                 meleeStateMachine.SetNextState(new AirEntryState());
                 EventManager.current.StartInputAction();
             }
-            else if (Input.GetKeyDown(KeyCode.R))
+            else if (magicAttack.triggered && magicAttack.ReadValue<float>() > 0f)
             {
-                if(Input.GetKey(KeyCode.S))
+                if(lookDown.ReadValue<float>() > 0f)
                 {
                     meleeStateMachine.SetNextState(new AirSlamState());
                     EventManager.current.StartInputAction();
@@ -80,7 +108,7 @@ public class ComboCharacter : MonoBehaviour
                     EventManager.current.StartInputAction();
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.E))
+            else if (teleport.triggered && teleport.ReadValue<float>() > 0f)
             {
                 meleeStateMachine.SetNextState(new BaseWarpState());
                 EventManager.current.StartInputAction();

@@ -62,6 +62,33 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Teleport"",
+                    ""type"": ""Button"",
+                    ""id"": ""8dfc3d3b-4cb8-4f84-81b9-b7a029611fdc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LookUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""745db6f2-8e15-461d-8e49-a884fc7d9dad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LookDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""d798580a-eb36-46a7-a86a-74bc3867a883"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -70,7 +97,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""id"": ""978bfe49-cc26-4a3d-ab7b-7d7a29327403"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
@@ -265,12 +292,100 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ac99f9d3-10e0-4715-a6e1-f69fc820d756"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BasicMagicAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""fbc4d19e-e923-4c07-81c8-28ab32859743"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54a70b6d-85a8-42de-a7f8-28c3f04f2fba"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b849cc8a-d237-4993-9322-e06275737cdf"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df92095d-6065-4d38-b04e-f8c468eb6165"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81b97efd-a055-4672-8bd9-c4c9c4c014de"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d01d0c85-0248-48a6-8d4b-48dd2763fe60"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d600ebb4-c52e-4fc9-88f8-6b04498e712b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cea12fba-7bd3-4584-9fc8-462d44e99c88"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -873,6 +988,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_BasicAttack = m_Player.FindAction("BasicAttack", throwIfNotFound: true);
         m_Player_BasicMagicAttack = m_Player.FindAction("BasicMagicAttack", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Teleport = m_Player.FindAction("Teleport", throwIfNotFound: true);
+        m_Player_LookUp = m_Player.FindAction("LookUp", throwIfNotFound: true);
+        m_Player_LookDown = m_Player.FindAction("LookDown", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -948,6 +1066,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_BasicAttack;
     private readonly InputAction m_Player_BasicMagicAttack;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Teleport;
+    private readonly InputAction m_Player_LookUp;
+    private readonly InputAction m_Player_LookDown;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -956,6 +1077,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @BasicAttack => m_Wrapper.m_Player_BasicAttack;
         public InputAction @BasicMagicAttack => m_Wrapper.m_Player_BasicMagicAttack;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Teleport => m_Wrapper.m_Player_Teleport;
+        public InputAction @LookUp => m_Wrapper.m_Player_LookUp;
+        public InputAction @LookDown => m_Wrapper.m_Player_LookDown;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -977,6 +1101,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Teleport.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
+                @Teleport.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
+                @Teleport.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
+                @LookUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookUp;
+                @LookUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookUp;
+                @LookUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookUp;
+                @LookDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookDown;
+                @LookDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookDown;
+                @LookDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookDown;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -993,6 +1126,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Teleport.started += instance.OnTeleport;
+                @Teleport.performed += instance.OnTeleport;
+                @Teleport.canceled += instance.OnTeleport;
+                @LookUp.started += instance.OnLookUp;
+                @LookUp.performed += instance.OnLookUp;
+                @LookUp.canceled += instance.OnLookUp;
+                @LookDown.started += instance.OnLookDown;
+                @LookDown.performed += instance.OnLookDown;
+                @LookDown.canceled += instance.OnLookDown;
             }
         }
     }
@@ -1153,6 +1295,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnBasicAttack(InputAction.CallbackContext context);
         void OnBasicMagicAttack(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnTeleport(InputAction.CallbackContext context);
+        void OnLookUp(InputAction.CallbackContext context);
+        void OnLookDown(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

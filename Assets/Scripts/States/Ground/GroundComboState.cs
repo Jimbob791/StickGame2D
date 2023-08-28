@@ -24,6 +24,7 @@ public class GroundComboState : MeleeBaseState
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("GroundAttack" + attackIndex);
             body.AddForce(new Vector3(8 * body.gameObject.GetComponent<Move>().facing, 0, 0), ForceMode2D.Impulse);
+            Debug.Log("Player Combo Fired");
         } 
     }
 
