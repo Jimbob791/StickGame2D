@@ -15,6 +15,8 @@ public class BaseWarpState : MagicBaseState
             return;
         }
 
+        EventManager.current.StartInputAction();
+
         //Attack
         if (body.gameObject.GetComponent<Ground>().GetOnGround() == false)
         {
@@ -51,6 +53,15 @@ public class BaseWarpState : MagicBaseState
             offset *= 5f;
             body.gameObject.GetComponent<Transform>().position = body.gameObject.GetComponent<Transform>().position + offset;
             body.velocity = Vector3.zero;
+        }
+
+        // Play SFX
+        foreach (Transform child in animator.gameObject.transform)
+        {
+            if (child.gameObject.name == "TeleportSound")
+            {
+                child.gameObject.GetComponent<AudioSource>().Play();
+            }
         }
     }
 

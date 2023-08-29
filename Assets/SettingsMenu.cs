@@ -13,6 +13,8 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown textureDropdown;
     public TMP_Dropdown aaDropdown;
     public Slider volumeSlider;
+    public Slider sfxSlider;
+    public Slider musicSlider;
 
     float currentVolume;
     float currentMusicVolume;
@@ -39,6 +41,11 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
         LoadSettings(currentResolutionIndex);
+    }
+
+    void Update()
+    {
+        Debug.Log(currentVolume);
     }
 
     public void SetMasterVolume(float volume)
@@ -171,14 +178,14 @@ public class SettingsMenu : MonoBehaviour
             volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
 
         if (PlayerPrefs.HasKey("MusicVolumePreference"))
-            volumeSlider.value = PlayerPrefs.GetFloat("MusicVolumePreference");
+            musicSlider.value = PlayerPrefs.GetFloat("MusicVolumePreference");
         else
-            volumeSlider.value = PlayerPrefs.GetFloat("MusicVolumePreference");
+            musicSlider.value = PlayerPrefs.GetFloat("MusicVolumePreference");
         
         if (PlayerPrefs.HasKey("SFXVolumePreference"))
-            volumeSlider.value = PlayerPrefs.GetFloat("SFXVolumePreference");
+            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolumePreference");
         else
-            volumeSlider.value = PlayerPrefs.GetFloat("SFXVolumePreference");
+            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolumePreference");
     }
 
     public void OpenOptions()

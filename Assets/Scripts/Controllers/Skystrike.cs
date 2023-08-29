@@ -22,6 +22,7 @@ public class Skystrike : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, 10f);
+        StartCoroutine(StrikeSound());
     }
 
     void Update()
@@ -62,5 +63,15 @@ public class Skystrike : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator StrikeSound()
+    {
+        GameObject.Find("StrikeCharge").GetComponent<AudioSource>().Play();
+
+        float multi = GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
+        yield return new WaitForSeconds(2f / multi);
+
+        GameObject.Find("StrikeHit").GetComponent<AudioSource>().Play();
     }
 }

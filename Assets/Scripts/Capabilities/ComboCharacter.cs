@@ -53,7 +53,6 @@ public class ComboCharacter : MonoBehaviour
             if (teleport.triggered && teleport.ReadValue<float>() > 0f)
             {
                 meleeStateMachine.SetNextState(new BaseWarpState());
-                EventManager.current.StartInputAction();
             }
             return;
         }
@@ -81,7 +80,6 @@ public class ComboCharacter : MonoBehaviour
             else if (teleport.triggered && teleport.ReadValue<float>() > 0f)
             {
                 meleeStateMachine.SetNextState(new BaseWarpState());
-                EventManager.current.StartInputAction();
             }
             else
             {
@@ -111,7 +109,6 @@ public class ComboCharacter : MonoBehaviour
             else if (teleport.triggered && teleport.ReadValue<float>() > 0f)
             {
                 meleeStateMachine.SetNextState(new BaseWarpState());
-                EventManager.current.StartInputAction();
             }
             else
             {

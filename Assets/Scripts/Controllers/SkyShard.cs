@@ -76,6 +76,7 @@ public class SkyShard : MonoBehaviour
     {
         if (col.gameObject.tag == "Platform")
         {
+            GameObject.Find("LandSound").GetComponent<AudioSource>().Play();
             state = "land";
             body.velocity = Vector3.zero;
         }
@@ -85,6 +86,7 @@ public class SkyShard : MonoBehaviour
     {
         if (state == "wait")
         {
+            GameObject.Find("ShatterSound").GetComponent<AudioSource>().Play();
             animator.SetTrigger("Rupture");
             hitCollider = ruptureHitbox;
             damageToDeal = ruptureDamage;
