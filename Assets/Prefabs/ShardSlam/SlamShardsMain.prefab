@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8955694309307375839}
   - component: {fileID: 2715489766927293361}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShardHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3857609899239544289}
   - component: {fileID: 4070867453466006700}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SlamShardsMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ MonoBehaviour:
   knockback: {x: 1, y: 9}
   animator: {fileID: 3764205381738868401}
   slamHitbox: {fileID: 2715489766927293361}
-  HitEffectPrefab: {fileID: 3647541324382463757, guid: 4ac66eef451dca541abcb1e12368c1f1, type: 3}
+  HitEffectPrefab: {fileID: 8227857904890441325, guid: 0f5847fd8c3d0e7489eee8d4864decf4, type: 3}
 --- !u!1 &7212004582215923581
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4020888316130724410}
   - component: {fileID: 7779126379465090411}
   - component: {fileID: 3764205381738868401}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,6 +230,10 @@ PrefabInstance:
     - target: {fileID: 7447015231093492293, guid: 2ee000e5ea4977a4eb51a443c62168f9, type: 3}
       propertyPath: m_Name
       value: ShardBurst
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447015231093492293, guid: 2ee000e5ea4977a4eb51a443c62168f9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7447015231093492294, guid: 2ee000e5ea4977a4eb51a443c62168f9, type: 3}
       propertyPath: m_RootOrder

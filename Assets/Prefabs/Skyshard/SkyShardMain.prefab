@@ -258,7 +258,7 @@ MonoBehaviour:
   ruptureEffect: {fileID: 7447015231093492293, guid: 2ee000e5ea4977a4eb51a443c62168f9, type: 3}
   landHitbox: {fileID: 3800131619948177530}
   ruptureHitbox: {fileID: 3800131621589451322}
-  HitEffectPrefab: {fileID: 3647541324382463757, guid: 4ac66eef451dca541abcb1e12368c1f1, type: 3}
+  HitEffectPrefab: {fileID: 8227857904890441325, guid: 0f5847fd8c3d0e7489eee8d4864decf4, type: 3}
 --- !u!1 &3800131621589451323
 GameObject:
   m_ObjectHideFlags: 0
