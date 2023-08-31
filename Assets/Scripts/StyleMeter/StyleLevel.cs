@@ -12,4 +12,5 @@ public class StyleLevel : ScriptableObject
     public Sprite icon;
     public Color lightCol;
     public Color darkCol;
+    public int mana;
 }

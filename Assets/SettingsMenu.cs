@@ -175,17 +175,17 @@ public class SettingsMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("VolumePreference"))
             volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
         else
-            volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
+            volumeSlider.value = 0.8f;
 
         if (PlayerPrefs.HasKey("MusicVolumePreference"))
             musicSlider.value = PlayerPrefs.GetFloat("MusicVolumePreference");
         else
-            musicSlider.value = PlayerPrefs.GetFloat("MusicVolumePreference");
+            musicSlider.value = 0.5f;
         
         if (PlayerPrefs.HasKey("SFXVolumePreference"))
             sfxSlider.value = PlayerPrefs.GetFloat("SFXVolumePreference");
         else
-            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolumePreference");
+            sfxSlider.value = 0.5f;
     }
 
     public void OpenOptions()

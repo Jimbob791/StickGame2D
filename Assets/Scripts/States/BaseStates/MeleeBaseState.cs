@@ -45,8 +45,8 @@ public class MeleeBaseState : State
         basicAttack.Enable();
 
         base.OnEnter(_stateMachine);
-        animator = GetComponent<Animator>();
-        body = GetComponent<Transform>().parent.GetComponent<Rigidbody2D>();
+        animator = GetComponent<Transform>().GetChild(0).GetComponent<Animator>();
+        body = GetComponent<Rigidbody2D>();
         collidersDamaged = new List<Collider2D>();
         hitCollider = GetComponent<ComboCharacter>().hitbox;
         HitEffectPrefab = GetComponent<ComboCharacter>().Hiteffect;

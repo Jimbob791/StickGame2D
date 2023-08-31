@@ -18,3 +18,4 @@ MonoBehaviour:
   icon: {fileID: 1307174935, guid: 90b997e21105cc442839292f73e37cee, type: 3}
   lightCol: {r: 0.6431373, g: 0.86666673, b: 0.8588236, a: 1}
   darkCol: {r: 0.45098042, g: 0.74509805, b: 0.82745105, a: 1}
+  mana: 12

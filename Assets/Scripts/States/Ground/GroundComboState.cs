@@ -25,7 +25,9 @@ public class GroundComboState : MeleeBaseState
             animator.SetTrigger("GroundAttack" + attackIndex);
             body.AddForce(new Vector3(8 * body.gameObject.GetComponent<Move>().facing, 0, 0), ForceMode2D.Impulse);
             Debug.Log("Player Combo Fired");
+            GameObject.Find("Slash2Sound").GetComponent<AudioSource>().Play();
         } 
+        
     }
 
     public override void OnUpdate()

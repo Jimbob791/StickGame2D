@@ -19,6 +19,7 @@ public class AirBonusState : MeleeBaseState
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("GroundAirAttack3");
             body.velocity = new Vector3(body.gameObject.GetComponent<Move>().facing * 10f, 18f, 0f);
+            GameObject.Find("AirSlashSound").GetComponent<AudioSource>().Play();
         }
         else
         {
@@ -29,7 +30,8 @@ public class AirBonusState : MeleeBaseState
             duration = 1.1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("GroundAirAttack3");
-            body.velocity = new Vector3(body.gameObject.GetComponent<Move>().facing * 10f, 5f, 0f);    
+            body.velocity = new Vector3(body.gameObject.GetComponent<Move>().facing * 10f, 5f, 0f);   
+            GameObject.Find("AirSlashSound").GetComponent<AudioSource>().Play(); 
         }
     }
 

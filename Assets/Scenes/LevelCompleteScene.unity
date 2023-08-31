@@ -9980,9 +9980,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: LoadLevelSelect
+      - m_Target: {fileID: 887517063}
+        m_TargetAssemblyTypeName: LevelCompleteManager, Assembly-CSharp
+        m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11200,6 +11200,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
   beatManager: {fileID: 0}
+  levelTime: 0
+  levelCompleteTime: 0
+  beats: 0
+  finalStyle: 0
+  isWin: 0
 --- !u!1 &1694260946
 GameObject:
   m_ObjectHideFlags: 0

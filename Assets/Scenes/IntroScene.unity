@@ -414,16 +414,13 @@ MonoBehaviour:
   metronomeAnim: {fileID: 973522121}
   vignetteAnim: {fileID: 1051772807}
   menuMusicList:
-  - {fileID: 11400000, guid: 8f93f3eacf1c54e4aac0c91456dc5376, type: 2}
-  - {fileID: 11400000, guid: 5ed5084f8075abe47b4f76fc71898590, type: 2}
-  - {fileID: 11400000, guid: 375bbe2fd62d8814d997ab5243887ec5, type: 2}
   - {fileID: 11400000, guid: 67abcb127ff1fd442bc6e6148e5ebbc6, type: 2}
   - {fileID: 11400000, guid: 64a08e95fd36ec74f93d0c8bfb49b62e, type: 2}
+  - {fileID: 11400000, guid: 347b8acab671240479ab62c011d83c48, type: 2}
   - {fileID: 11400000, guid: b2b650a2e32df0e4f8a703725d9f5ead, type: 2}
-  - {fileID: 11400000, guid: 9e9d2ee79b98e7742b7c7a3a9b5f0a40, type: 2}
-  - {fileID: 11400000, guid: 85c686310c6906a4fb33338a053a863f, type: 2}
   - {fileID: 11400000, guid: d700edd0d1a6c5a4796c347ed484159c, type: 2}
-  - {fileID: 11400000, guid: 71168d95e0b56b94697497a713ea550a, type: 2}
+  - {fileID: 11400000, guid: d8b9e2af863f2b74c96760ccc272e8ec, type: 2}
+  - {fileID: 11400000, guid: 8c253dcb49fb83549b8d0551a6cf4388, type: 2}
   globalLight: {fileID: 1509284306}
 --- !u!4 &45266940
 Transform:
@@ -2641,7 +2638,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 249671080}
   m_OnClick:
     m_PersistentCalls:
@@ -10021,7 +10018,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1601665203}
   m_OnClick:
     m_PersistentCalls:
@@ -12608,6 +12605,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
   beatManager: {fileID: 8262780829905174013}
+  levelTime: 0
+  levelCompleteTime: 0
+  beats: 0
+  finalStyle: 0
+  isWin: 0
 --- !u!1 &2010641889
 GameObject:
   m_ObjectHideFlags: 0

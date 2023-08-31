@@ -15,4 +15,4 @@ MonoBehaviour:
   songClip: {fileID: 8300000, guid: 5d57bb80e6559924a89fda3cf61ecc3c, type: 3}
   songBpm: 172
   beatsBeforeDrop: 124
-  startOffset: 104
+  startOffset: 112

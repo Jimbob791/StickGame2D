@@ -23,7 +23,9 @@ public class GroundEntryState : MeleeBaseState
             duration = 1.1f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("GroundAttack" + attackIndex);
+            GameObject.Find("Slash1Sound").GetComponent<AudioSource>().Play();
         }
+        
     }
 
     public override void OnUpdate()

@@ -46,7 +46,7 @@ public class ComboCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        groundMoves = transform.parent.GetComponent<Ground>().GetOnGround();
+        groundMoves = gameObject.GetComponent<Ground>().GetOnGround();
 
         if (meleeStateMachine.CurrentState.GetType() != typeof(IdleCombatState))
         {

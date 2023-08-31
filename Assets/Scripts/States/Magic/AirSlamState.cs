@@ -11,13 +11,15 @@ public class AirSlamState : MagicBaseState
     {
         base.OnEnter(_stateMachine);
 
-        if (body.gameObject.GetComponent<PlayerHealth>().CheckMana(60) == false)
+        if (body.gameObject.GetComponent<PlayerHealth>().CheckMana(80) == false)
         {
             stateMachine.SetNextStateToMain();
             duration = 0f;
             canCast = false;
             return;
         }
+
+        EventManager.current.StartInputAction();
 
         //Attack
         if (body.gameObject.GetComponent<Ground>().GetOnGround() == true)

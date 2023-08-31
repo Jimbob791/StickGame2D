@@ -24,6 +24,7 @@ public class AirEntryState : MeleeBaseState
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("AirAttack" + attackIndex);
             body.velocity = new Vector3(body.gameObject.GetComponent<Move>().facing * 10f, 3f, 0f);
+            GameObject.Find("Slash1Sound").GetComponent<AudioSource>().Play();
         }
     }
 

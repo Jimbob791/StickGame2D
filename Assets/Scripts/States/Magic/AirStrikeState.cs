@@ -4,9 +4,21 @@ using UnityEngine;
 
 public class AirStrikeState : MagicBaseState
 {
+    private bool canMove;
+    private bool canCast = true;
+    
     public override void OnEnter(StateMachine _stateMachine)
     {
         base.OnEnter(_stateMachine);
+
+        if (body.gameObject.GetComponent<PlayerHealth>().CheckMana(75) == false)
+        {
+            stateMachine.SetNextStateToMain();
+            duration = 0f;
+            return;
+        }
+
+        EventManager.current.StartInputAction();
 
         //Attack
         if (body.gameObject.GetComponent<Ground>().GetOnGround() == true)

@@ -24,7 +24,9 @@ public class GroundFinisherState : MeleeBaseState
             animator.speed = 0.3f * GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;
             animator.SetTrigger("GroundAttack" + attackIndex);
             //Debug.Log("Player Attack " + attackIndex + " Fired!");
+            GameObject.Find("Slash3Sound").GetComponent<AudioSource>().Play();
         }
+        
     }
 
     public override void OnUpdate()

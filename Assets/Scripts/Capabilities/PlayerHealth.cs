@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        manaGrowth = GameObject.Find("StyleMeter").GetComponent<StyleManager>().currentLevel.mana;
         currentMana += manaGrowth * Time.deltaTime;
         if (currentMana > maxMana)
         {

@@ -33,6 +33,10 @@ public class LevelCompleteManager : MonoBehaviour
     {
         // Set Level Information
         levelInfo = GameObject.Find("LoadManager").GetComponent<LoadManager>().currentLevel;
+        win = GameObject.Find("LoadManager").GetComponent<LoadManager>().isWin;
+        levelStyle = GameObject.Find("LoadManager").GetComponent<LoadManager>().finalStyle;
+        numBeats = GameObject.Find("LoadManager").GetComponent<LoadManager>().beats;
+        timeSeconds = GameObject.Find("LoadManager").GetComponent<LoadManager>().levelCompleteTime; 
 
         // Stop old music
         musicSource = GameObject.Find("MusicSource").GetComponent<AudioSource>();
@@ -86,5 +90,11 @@ public class LevelCompleteManager : MonoBehaviour
     {
         // Load main menu
         StartCoroutine(GameObject.Find("TransitionManager").GetComponent<Transitions>().ExitScene("IntroScene"));
+    }
+
+    public void Retry()
+    {
+        // Load level again
+        StartCoroutine(GameObject.Find("TransitionManager").GetComponent<Transitions>().ExitScene(levelInfo.sceneName));
     }
 }

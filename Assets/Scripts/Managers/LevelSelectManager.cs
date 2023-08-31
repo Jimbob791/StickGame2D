@@ -116,4 +116,9 @@ public class LevelSelectManager : MonoBehaviour
 
         StartCoroutine(FadeAudioSource.StartFade(GameObject.Find("MusicSource").GetComponent<AudioSource>(), 0.2f, 0.07f));
     }
+
+    public void LoadMainMenu()
+    {
+        StartCoroutine(GameObject.Find("TransitionManager").GetComponent<Transitions>().ExitScene("IntroScene"));
+    }
 }

@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class GroundSnapState : MagicBaseState
 {
+    private bool canMove;
+    private bool canCast = true;
+
     public override void OnEnter(StateMachine _stateMachine)
     {
         base.OnEnter(_stateMachine);
+
+        if (body.gameObject.GetComponent<PlayerHealth>().CheckMana(50) == false)
+        {
+            stateMachine.SetNextStateToMain();
+            duration = 0f;
+            canCast = false;
+            return;
+        }
+
+        EventManager.current.StartInputAction();
 
         //Attack
         if (body.gameObject.GetComponent<Ground>().GetOnGround() == false)
@@ -14,7 +27,7 @@ public class GroundSnapState : MagicBaseState
             stateMachine.SetNextStateToMain();
             duration = 0f;
         }
-        else
+        else if(canCast)
         {
             attackIndex = 1;
             duration = 2f / GameObject.Find("BeatManager").GetComponent<BeatManager>().multiplier;

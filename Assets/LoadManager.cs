@@ -8,10 +8,10 @@ public class LoadManager : MonoBehaviour
     public LevelInfoObject currentLevel;
     public BeatManager beatManager;
 
-    private float levelTime;
-    private float levelCompleteTime;
-    private int beats;
-    private float finalStyle;
+    public float levelTime;
+    public float levelCompleteTime;
+    public int beats;
+    public float finalStyle;
     public bool isWin;
 
     void OnEnable()

@@ -22,8 +22,8 @@ public class MagicBaseState : State
     public override void OnEnter(StateMachine _stateMachine)
     {
         base.OnEnter(_stateMachine);
-        animator = GetComponent<Animator>();
-        body = GetComponent<Transform>().parent.GetComponent<Rigidbody2D>();
+        animator = GetComponent<Transform>().GetChild(0).GetComponent<Animator>();
+        body = GetComponent<Rigidbody2D>();
     }
 
     public override void OnUpdate()
