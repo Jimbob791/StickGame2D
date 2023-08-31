@@ -68,6 +68,16 @@ public class LevelSelectManager : MonoBehaviour
         }
 
         levelTitle.text = levelList[selected].levelName + " - " + levelList[selected].levelMusic.songBpm + " BPM";
+        if (PlayerPrefs.HasKey("VolumePreference"))
+        {
+            levelScore.text = PlayerPrefs.GetInt(levelList[selected].levelName + "Score").ToString();
+            levelScoreBacking.text = PlayerPrefs.GetInt(levelList[selected].levelName + "Score").ToString();
+        }
+        else
+        {
+            levelScore.text = "0 Score";
+            levelScoreBacking.text = "0 Score";
+        }
 
         float inputx = navigate.ReadValue<Vector2>().x;
 
@@ -88,7 +98,7 @@ public class LevelSelectManager : MonoBehaviour
         if (submit.triggered && submit.ReadValue<float>() > 0f)
         {
             GameObject.Find("LoadManager").GetComponent<LoadManager>().currentLevel = levelList[selected];
-            SceneManager.LoadScene(levelList[selected].sceneName, LoadSceneMode.Single);
+            StartCoroutine(GameObject.Find("TransitionManager").GetComponent<Transitions>().ExitScene(levelList[selected].sceneName));
         }
 
         lastX = inputx;

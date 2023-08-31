@@ -12,6 +12,7 @@ public class LoadManager : MonoBehaviour
     private float levelCompleteTime;
     private int beats;
     private float finalStyle;
+    public bool isWin;
 
     void OnEnable()
     {
@@ -36,6 +37,7 @@ public class LoadManager : MonoBehaviour
         {
             // Start level timer
             levelTime = 0f;
+            isWin = true;
 
             // Set music to selected song
             beatManager.NewBpm(currentLevel.levelMusic.songBpm);
@@ -50,6 +52,7 @@ public class LoadManager : MonoBehaviour
             levelLoader.timeSeconds = levelCompleteTime;
             levelLoader.numBeats = beats;
             levelLoader.levelStyle = finalStyle;
+            levelLoader.win = isWin;
         }
     }
 
@@ -57,7 +60,8 @@ public class LoadManager : MonoBehaviour
     {
         levelCompleteTime = levelTime;
         finalStyle = GameObject.FindGameObjectsWithTag("StyleMeter")[0].GetComponent<StyleManager>().totalStyle;
-        SceneManager.LoadScene("LevelCompleteScene", LoadSceneMode.Single);
+        Time.timeScale = 0.5f;
+        StartCoroutine(GameObject.Find("TransitionManager").GetComponent<Transitions>().ExitScene("LevelCompleteScene"));
     }
 
     private void RhythmBeat()

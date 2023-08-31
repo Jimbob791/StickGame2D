@@ -47,12 +47,14 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount, Vector3 knockback)
     {
         if (invincible)
         {
             return;
         }
+
+        gameObject.GetComponent<Rigidbody2D>().velocity = knockback * gameObject.GetComponent<Move>().facing * -1;
 
         foreach (Coroutine r in routines)
         {
@@ -67,7 +69,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            // death
+            GameObject.Find("LoadManager").GetComponent<LoadManager>().isWin = false;
+            GameObject.Find("LoadManager").GetComponent<LoadManager>().LevelComplete();
         }
     }
 

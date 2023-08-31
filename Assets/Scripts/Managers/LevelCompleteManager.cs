@@ -75,11 +75,16 @@ public class LevelCompleteManager : MonoBehaviour
         musicSource.time = levelInfo.levelMusic.startOffset * (60 / levelInfo.levelMusic.songBpm);
         musicSource.Play();
         GameObject.Find("BeatManager").GetComponent<BeatManager>().NewBpm(levelInfo.levelMusic.songBpm);
+
+        // Save info
+        PlayerPrefs.SetInt(levelInfo.levelName + "Score", (int)finalScore);
+        PlayerPrefs.SetInt(levelInfo.levelName + "Complete", win ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     public void ExitToMain()
     {
         // Load main menu
-        SceneManager.LoadScene("IntroScene", LoadSceneMode.Single);
+        StartCoroutine(GameObject.Find("TransitionManager").GetComponent<Transitions>().ExitScene("IntroScene"));
     }
 }

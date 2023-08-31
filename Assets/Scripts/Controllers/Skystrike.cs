@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Skystrike : MonoBehaviour
 {
     [SerializeField] private int pointDamage;
     [SerializeField] private int explosionDamage;
     [SerializeField] private float stunTime;
+    [SerializeField] private CinemachineImpulseSource impulseSource;
 
     [SerializeField] private Vector2 knockback;
     [SerializeField] private Animator animator;
@@ -73,5 +75,6 @@ public class Skystrike : MonoBehaviour
         yield return new WaitForSeconds(2f / multi);
 
         GameObject.Find("StrikeHit").GetComponent<AudioSource>().Play();
+        CameraShakeManager.current.CameraShake(impulseSource);
     }
 }

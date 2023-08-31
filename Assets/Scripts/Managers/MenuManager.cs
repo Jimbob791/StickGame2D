@@ -17,17 +17,11 @@ public class MenuManager : MonoBehaviour
 
     public void ExitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 
     public void LoadLevelSelect()
     {
-        SceneManager.LoadScene("levelSelectScene", LoadSceneMode.Single);
-    }
-
-    public void LoadOptions()
-    {
-        
+        StartCoroutine(GameObject.Find("TransitionManager").GetComponent<Transitions>().ExitScene("levelSelectScene"));
     }
 }

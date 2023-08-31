@@ -11,4 +11,5 @@ public class LevelInfoObject : ScriptableObject
     public LevelMusicObject levelMusic;
     public int worldNum;
     public int levelNum;
+    public string saveString;
 }

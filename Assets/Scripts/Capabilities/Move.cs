@@ -126,6 +126,7 @@ public class Move : MonoBehaviour
         }
         if (col.gameObject.tag == "Portal")
         {
+            GameObject.Find("LoadManager").GetComponent<LoadManager>().isWin = true;
             GameObject.Find("LoadManager").GetComponent<LoadManager>().LevelComplete();
         }
     }

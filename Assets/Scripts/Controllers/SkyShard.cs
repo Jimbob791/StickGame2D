@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class SkyShard : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SkyShard : MonoBehaviour
     [SerializeField] private int landDamage;
     [SerializeField] private int ruptureDamage;
     [SerializeField] private float stunTime;
+    [SerializeField] private CinemachineImpulseSource impulseSource;
 
     [SerializeField] private Vector2 knockback;
     [SerializeField] private Animator animator;
@@ -76,6 +78,7 @@ public class SkyShard : MonoBehaviour
     {
         if (col.gameObject.tag == "Platform")
         {
+            CameraShakeManager.current.CameraShake(impulseSource);
             GameObject.Find("LandSound").GetComponent<AudioSource>().Play();
             state = "land";
             body.velocity = Vector3.zero;
@@ -91,6 +94,7 @@ public class SkyShard : MonoBehaviour
             hitCollider = ruptureHitbox;
             damageToDeal = ruptureDamage;
             CheckHit();
+            CameraShakeManager.current.CameraShake(impulseSource);
             GameObject pfx = GameObject.Instantiate(ruptureEffect, gameObject.transform.position, Quaternion.Euler(-90, 0, 0));
             Destroy(pfx, 2f);
             Destroy(gameObject, 2f);

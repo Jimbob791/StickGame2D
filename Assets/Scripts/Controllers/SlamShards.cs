@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class SlamShards : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class SlamShards : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Collider2D slamHitbox;
     [SerializeField] private GameObject HitEffectPrefab;
+    [SerializeField] private CinemachineImpulseSource ruptureSource;
 
     private int damageToDeal;
     private string attackName = "slamShards";
@@ -23,6 +25,7 @@ public class SlamShards : MonoBehaviour
         animator.speed = 0.5f * multi;
         damageToDeal = slamDamage;
         hitCollider = slamHitbox;
+        CameraShakeManager.current.CameraShake(ruptureSource);
         CheckHit();
     }
 
