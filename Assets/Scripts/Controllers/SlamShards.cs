@@ -25,9 +25,9 @@ public class SlamShards : MonoBehaviour
         animator.speed = 0.5f * multi;
         damageToDeal = slamDamage;
         hitCollider = slamHitbox;
+        CheckHit();
         CameraShakeManager.current.CameraShake(ruptureSource);
         GameObject.Find("LandSound").GetComponent<AudioSource>().Play();
-        CheckHit();
     }
 
     private void CheckHit()

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Move : MonoBehaviour
 {
@@ -12,10 +11,6 @@ public class Move : MonoBehaviour
 
     [Header("Cape Anchor")]
     [SerializeField] private CapeAnchor capeAnchor;
-
-    [Header("Input System")]
-    private PlayerControls playerControls;
-    private InputAction move;
 
     [Header("Input Variables")]
     [SerializeField] private Animator animator = null;
@@ -37,20 +32,8 @@ public class Move : MonoBehaviour
     private float acceleration;
     private bool onGround;
 
-    void OnEnable()
-    {
-        move = playerControls.Player.Move;
-        move.Enable();
-    }
-
-    void OnDisable()
-    {
-        move.Disable();
-    }
-
     void Awake()
     {
-        playerControls = new PlayerControls();
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
     }
@@ -61,7 +44,7 @@ public class Move : MonoBehaviour
 
         if (animator.GetFloat("Attacking") == 0f)
         {
-            direction.x = move.ReadValue<Vector2>().x;
+            direction.x = Input.GetAxisRaw("Horizontal");
             if (direction.x != 0f)
             {
                 direction.Normalize();

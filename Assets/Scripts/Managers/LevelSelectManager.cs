@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -17,31 +16,9 @@ public class LevelSelectManager : MonoBehaviour
     private List<GameObject> previews = new List<GameObject>();
 
     [Header("Input System")]
-    private PlayerControls playerControls;
-    private InputAction navigate;
-    private InputAction submit;
 
     private int selected = 0;
     private float lastX;
-
-    void OnEnable()
-    {
-        navigate = playerControls.UI.Navigate;
-        submit = playerControls.UI.Submit;
-        navigate.Enable();
-        submit.Enable();
-    }
-
-    void OnDisable()
-    {
-        navigate.Disable();
-        submit.Disable();
-    }
-
-    void Awake()
-    {
-        playerControls = new PlayerControls();
-    }
 
     void Start()
     {
@@ -79,7 +56,7 @@ public class LevelSelectManager : MonoBehaviour
             levelScoreBacking.text = "0 Score";
         }
 
-        float inputx = navigate.ReadValue<Vector2>().x;
+        float inputx = Input.GetAxisRaw("Horizontal");
 
         if (inputx != 0f && lastX == 0f)
         {
@@ -95,7 +72,7 @@ public class LevelSelectManager : MonoBehaviour
             }
         }
 
-        if (submit.triggered && submit.ReadValue<float>() > 0f)
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
             GameObject.Find("LoadManager").GetComponent<LoadManager>().currentLevel = levelList[selected];
             StartCoroutine(GameObject.Find("TransitionManager").GetComponent<Transitions>().ExitScene(levelList[selected].sceneName));

@@ -49,10 +49,10 @@ public class MagicManager : MonoBehaviour
 
         int shardCount = shards.Count + 1;
 
-        for(int i = 0; i < shardCount; i++)
+        for(int i = shardCount; i > 0; i--)
         {
-            shards[0].gameObject.GetComponent<SkyShard>().Rupture();
-            shards.Remove(shards[0]);
+            shards[i].gameObject.GetComponent<SkyShard>().Rupture();
+            shards.Remove(shards[i]);
         }
     }
 

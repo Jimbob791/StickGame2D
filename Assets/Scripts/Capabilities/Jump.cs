@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Jump : MonoBehaviour
 {
@@ -12,10 +11,6 @@ public class Jump : MonoBehaviour
     [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
     [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
     [SerializeField, Range(0f, 5f)] private float stallMovementMultiplier = 0.5f;
-
-    [Header("Input System")]
-    private PlayerControls playerControls;
-    private InputAction jump;
 
     private Rigidbody2D body;
     private Ground ground;
@@ -28,23 +23,14 @@ public class Jump : MonoBehaviour
 
     void Awake()
     {
-        playerControls = new PlayerControls();
-
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
 
         defaultGravityScale = 1f;
     }
-
-    void OnEnable()
-    {
-        jump = playerControls.Player.Jump;
-        jump.Enable();
-    }
-
     void Update()
     {
-        desiredJump |= jump.triggered && jump.ReadValue<float>() > 0f;
+        desiredJump |= Input.GetKeyDown(KeyCode.Space);
     }
 
     private void FixedUpdate()
